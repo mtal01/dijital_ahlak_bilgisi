@@ -773,7 +773,8 @@
       content: '';
       position: absolute;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+      background: repeating-linear-gradient(0deg, rgba(255,255,255,0.05) 0px, rgba(255,255,255,0.05) 2px, transparent 2px, transparent 4px);
+      opacity: 0.3;
     }
     .result-section .container { position: relative; z-index: 1; }
     .result-section h2 {
@@ -998,105 +999,96 @@
               <div class="feature-icon"><i class="fas fa-quran"></i></div>
               <div class="feature-text">
                 <h4>Kur'an-ı Kerim</h4>
-                <p>Ayetlerle desteklenmiş kavramlar</p>
+                <p>Dini kaynaklar</p>
               </div>
             </div>
             <div class="feature-item">
-              <div class="feature-icon"><i class="fas fa-mosque"></i></div>
+              <div class="feature-icon"><i class="fas fa-book"></i></div>
               <div class="feature-text">
-                <h4>Hadis ve Sünnet</h4>
-                <p>Peygamberimizin uygulamaları</p>
+                <h4>Hadis/Sünnet</h4>
+                <p>Peygamberimizin yaşantısı</p>
               </div>
             </div>
             <div class="feature-item">
-              <div class="feature-icon"><i class="fas fa-laptop"></i></div>
+              <div class="feature-icon"><i class="fas fa-globe"></i></div>
               <div class="feature-text">
-                <h4>Dijital Uygulama</h4>
-                <p>Günlük dijital hayata entegrasyon</p>
+                <h4>Dijital Örnekler</h4>
+                <p>Gerçek hayat uygulamaları</p>
               </div>
             </div>
+          </div>
+        </div>
+        <div class="purpose-visual">
+          <img src="https://via.placeholder.com/500x600?text=Dijital+Ahlak" alt="Dijital Ahlak" class="main-img">
+          <div class="floating-card">
+            <i class="fas fa-check-circle"></i>
+            <span>İnteraktif Öğrenme</span>
+          </div>
+          <div class="floating-card">
+            <i class="fas fa-star"></i>
+            <span>Quiz ile Sınava</span>
           </div>
         </div>
       </div>
     </div>
   </section>
-  <section class="search-section">
+  <section id="sozluk" class="search-section">
     <div class="search-container">
+      <div class="section-header" style="color: #fff;">
+        <span class="section-tag" style="background: rgba(255,255,255,0.15); color: #fff;">Kavramlar</span>
+        <h2 class="section-title" style="color: #fff;">Dijital Ahlak Sözlüğü</h2>
+      </div>
       <div class="search-box">
         <i class="fas fa-search"></i>
-        <input type="text" class="search-input" id="searchInput" placeholder="Kavram ara: mahremiyet, adalet, sabır, emanet..." onkeyup="searchConcept()">
+        <input type="text" class="search-input" id="searchInput" placeholder="Kavram arayın...">
       </div>
     </div>
   </section>
-  <section id="sozluk" class="section">
+  <section class="section">
     <div class="container">
-      <div class="section-header">
-        <span class="section-tag">Kavramlar</span>
-        <h2 class="section-title">Ahlaki Değerler Sözlüğü</h2>
-        <p class="section-subtitle">Her kavramı tanımı, dini kaynağı ve dijital dünyadaki karşılığıyla inceleyin.</p>
+      <div class="concepts-grid" id="conceptsGrid">
       </div>
-      <div class="concepts-grid" id="conceptsGrid"></div>
     </div>
   </section>
-
-  <section id="quiz" class="section quiz-section">
+  <section id="quiz" class="quiz-section section">
     <div class="container">
       <div class="section-header">
-        <span class="section-tag">Bilgi Testi</span>
-        <h2 class="section-title">Dijital Ahlak Quiz</h2>
-        <p class="section-subtitle">Öğrendiklerinizi test edin ve dijital ahlak bilginizi ölçün.</p>
+        <span class="section-tag">Öz Değerlendirme</span>
+        <h2 class="section-title">Bilgi Testi</h2>
+        <p class="section-subtitle">Öğrendiklerinizi test edin ve skorunuzu öğrenin</p>
       </div>
       <div class="quiz-container">
-        <div class="quiz-progress" id="quizProgress" style="display:none;">
-          <span id="progressText">Soru 1 / 15</span>
+        <div class="quiz-progress">
+          <span id="questionNumber">1/15</span>
           <div class="progress-bar">
             <div class="progress-fill" id="progressFill"></div>
           </div>
-          <span id="scoreText">Puan: 0</span>
+          <span id="progressPercentage">0%</span>
         </div>
-        <div id="quizArea"></div>
-        <div class="quiz-result" id="quizResult">
-          <div class="result-icon"><i class="fas fa-trophy"></i></div>
-          <div class="result-score" id="resultScore">0 / 15</div>
-          <p class="result-message" id="resultMessage"></p>
-          <div class="result-stars" id="resultStars"></div>
-          <button class="btn btn-primary" onclick="restartQuiz()">
-            <i class="fas fa-redo"></i>
-            Tekrar Dene
-          </button>
-        </div>
+        <div id="quizContent"></div>
+        <div id="quizResult" class="quiz-result"></div>
       </div>
     </div>
   </section>
-  <section id="sonuc" class="section result-section">
+  <section id="sonuc" class="result-section section">
     <div class="container">
-      <h2>Beklenen Sonuç</h2>
-      <p>Öğrencilerin dijital ortamda daha bilinçli, saygılı, güvenilir, merhametli ve sorumlu davranışlar geliştirmesi hedeflenmektedir.</p>
+      <h2>Dijital Ahlak ile Geleceği Birlkte İnşa Edelim</h2>
+      <p>Dijital dünyada ahlaki değerleri yaşayarak daha sağlıklı bir çevrim içi ortam oluşturalım.</p>
       <div class="result-cards">
         <div class="result-card">
-          <i class="fas fa-brain"></i>
-          <h4>Bilinçli Kullanım</h4>
-          <p>Dijital araçları bilinçli ve amaçlı kullanma</p>
-        </div>
-        <div class="result-card">
           <i class="fas fa-handshake"></i>
-          <h4>Saygılı İletişim</h4>
-          <p>Karşılıklı saygı ve anlayış çerçevesinde iletişim</p>
+          <h4>Güven ve Saygı</h4>
+          <p>Dijital ilişkilerde temel</p>
         </div>
         <div class="result-card">
-          <i class="fas fa-lock"></i>
-          <h4>Güvenilirlik</h4>
-          <p>Kişisel verilerin korunması ve güvenilir kaynaklar</p>
-        </div>
-        <div class="result-card">
-          <i class="fas fa-hand-holding-heart"></i>
-          <h4>Merhamet ve Şefkat</h4>
-          <p>Dijital ortamda empati ve yardımlaşma</p>
-        </div>
-        <div class="result-card">
-          <i class="fas fa-balance-scale"></i>
+          <i class="fas fa-shield-alt"></i>
           <h4>Sorumluluk</h4>
-          <p>Davranışların sonuçlarını bilerek hareket etme</p>
+          <p>Açık ve dürüst iletişim</p>
+        </div>
+        <div class="result-card">
+          <i class="fas fa-heart"></i>
+          <h4>Duyarlılık</h4>
+          <p>Başkasının hislerini önem ver</p>
         </div>
       </div>
     </div>
@@ -1105,327 +1097,411 @@
     <div class="footer-content">
       <div class="footer-brand">
         <h3><i class="fas fa-book-open"></i> Dijital Ahlak Sözlüğü</h3>
-        <p>Geleneksel ahlaki değerleri dijital çağa taşıyan, ayet ve hadislerle desteklenmiş kapsamlı bir eğitim kaynağı.</p>
+        <p>Öğrencilerin dijital dünyada ahlaki değerler çerçevesinde davranmasını sağlamak amacıyla tasarlanmış eğitim platformu.</p>
       </div>
       <div class="footer-links">
-        <h4>Hızlı Bağlantılar</h4>
+        <h4>Hızlı Linkler</h4>
         <ul>
-          <li><a href="#amac"><i class="fas fa-chevron-right"></i> Projenin Amacı</a></li>
-          <li><a href="#sozluk"><i class="fas fa-chevron-right"></i> Kavramlar</a></li>
+          <li><a href="#amac"><i class="fas fa-chevron-right"></i> Amaç</a></li>
+          <li><a href="#sozluk"><i class="fas fa-chevron-right"></i> Sözlük</a></li>
           <li><a href="#quiz"><i class="fas fa-chevron-right"></i> Quiz</a></li>
-          <li><a href="#sonuc"><i class="fas fa-chevron-right"></i> Sonuç</a></li>
         </ul>
       </div>
       <div class="footer-links">
-        <h4>Kavramlar</h4>
+        <h4>Kaynaklar</h4>
         <ul>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Adalet</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Mahremiyet</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Empati</a></li>
-          <li><a href="#"><i class="fas fa-chevron-right"></i> Saygı</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Rehber</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> SSS</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> İletişim</a></li>
         </ul>
       </div>
       <div class="footer-links">
-        <h4>İletişim</h4>
+        <h4>Hukuki</h4>
         <ul>
-          <li><a href="#"><i class="fas fa-envelope"></i> info@dijitalahlak.com</a></li>
-          <li><a href="#"><i class="fas fa-globe"></i> www.dijitalahlak.com</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Gizlilik</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Şartlar</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Çerezler</a></li>
         </ul>
       </div>
     </div>
     <div class="footer-bottom">
-      <p>Dijital Dünya Ahlakla Güzelleşir <i class="fas fa-heart"></i> 2024</p>
+      <p>© 2024 Dijital Ahlak Sözlüğü. Tüm hakları saklıdır. <i class="fas fa-heart"></i></p>
     </div>
   </footer>
-  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+  <button class="back-to-top" id="backToTop" onclick="backToTop()">
     <i class="fas fa-arrow-up"></i>
   </button>
   <script>
     const concepts = [
-      { title: "Adalet", icon: "fa-balance-scale", image: "https://lh5.googleusercontent.com/proxy/qPDLxmeXX4WBo61T3SJ-6ZCf3vj8XAysgK24q4XGNSQoQd0_F3QfV_olzz7pWL_zuD9WMR0kXDBuBt41r3Nh5iko9tZoL_6nf3AWPwtaRNq60yBVCA", definition: "Herkese hakkını vermek, doğru ve tarafsız davranmaktır.", verse: "Şüphesiz Allah adaleti emreder... (Nahl, 90)", hadith: "Peygamberimiz insanlar arasında ayrım yapmadan adaletli davranmıştır.", digital: "Sosyal medyada bir kişiyi haksız yere suçlamamak, yorumlarda tarafsız olmak." },
-      { title: "Mahremiyet", icon: "fa-user-shield", image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=1200&auto=format&fit=crop", definition: "Kişinin özel hayatına, kişisel bilgilerine ve sınırlarına saygı göstermektir.", verse: "Birbirinizin gizlisini araştırmayın... (Hucurat, 12)", hadith: "Peygamberimiz insanların özel hayatını araştırmayı doğru görmemiştir.", digital: "Başkasının fotoğrafını, mesajını veya bilgisini izinsiz paylaşmamak." },
-      { title: "Empati", icon: "fa-heart", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop", definition: "Kendini başka bir insanın yerine koyarak onun duygularını anlamaya çalışmaktır.", verse: "Müminler ancak kardeştir. (Hucurat, 10)", hadith: "Kendisi için istediğini kardeşi için istemeyen gerçek mümin olamaz.", digital: "Yorum yazmadan önce karşı tarafın ne hissedebileceğini düşünmek." },
-      { title: "Saygı", icon: "fa-handshake", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop", definition: "İnsanların haklarına, düşüncelerine ve farklılıklarına değer vermektir.", verse: "Bir topluluk diğerini küçümsemesin. (Hucurat, 11)", hadith: "Büyüklerine saygı göstermeyen bizden değildir.", digital: "Hakaret, alay ve küçük düşürücü ifadelerden uzak durmak." },
-      { title: "Dürüstlük", icon: "fa-check-circle", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop", definition: "Her durumda doğru sözlü ve güvenilir olmaktır.", verse: "Doğru söz söyleyin. (Ahzab, 70)", hadith: "Doğruluk insanı iyiliğe götürür.", digital: "Sahte hesap kullanmamak, doğrulanmamış bilgileri paylaşmamak." },
-      { title: "Kul Hakkı", icon: "fa-gavel", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop", definition: "Başkasının hakkına zarar vermemek ve emeğine saygı göstermektir.", verse: "Mallarınızı aranızda haksız yollarla yemeyin. (Bakara, 188)", hadith: "Müslüman, insanların elinden ve dilinden emin olduğu kişidir.", digital: "Telifli içerikleri, fotoğrafları veya yazıları izinsiz kullanmamak." },
-      { title: "Nezaket", icon: "fa-smile", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop", definition: "İnsanlarla kibar, nazik ve saygılı bir dille iletişim kurmaktır.", verse: "İnsanlara güzel söz söyleyin. (Bakara, 83)", hadith: "Peygamberimiz konuşurken kırıcı olmamış, güzel sözlü olmuştur.", digital: "Mesajlarda ve yorumlarda kırıcı dil kullanmamak." },
-      { title: "Ölçülülük", icon: "fa-tachometer-alt", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop", definition: "Her konuda dengeli davranmak ve aşırıya kaçmamaktır.", verse: "Yiyin, için fakat israf etmeyin. (Araf, 31)", hadith: "Peygamberimiz her konuda dengeli ve ölçülü davranmıştır.", digital: "Ekran süresini dengeli kullanmak ve teknoloji bağımlılığından uzak durmak." },
-      { title: "Merhamet", icon: "fa-hand-holding-heart", image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200&auto=format&fit=crop", definition: "İnsanlara ve canlılara karşı şefkatli, anlayışlı ve yardımsever olmaktır.", verse: "Biz seni âlemlere rahmet olarak gönderdik. (Enbiya, 107)", hadith: "Merhamet etmeyene merhamet edilmez.", digital: "Zor durumda olan kişilerle alay etmemek, destekleyici dil kullanmak." },
-      { title: "Sorumluluk", icon: "fa-clipboard-check", image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop", definition: "Üzerine düşen görevleri yerine getirmek ve davranışlarının sonucunu bilmektir.", verse: "Herkes kazandığına karşılık bir rehindir. (Müddessir, 38)", hadith: "Hepiniz çobansınız ve güttüklerinizden sorumlusunuz.", digital: "Paylaşım yapmadan önce etkisini, doğruluğunu ve sonuçlarını düşünmek." },
-      { title: "Sabır", icon: "fa-hourglass-half", image: "https://images.unsplash.com/photo-1494172961521-33799ddd43a5?q=80&w=1200&auto=format&fit=crop", definition: "Zorluklar karşısında sakin, dayanıklı ve kararlı davranmaktır.", verse: "Allah sabredenlerle beraberdir. (Bakara, 153)", hadith: "Peygamberimiz sıkıntılar karşısında sabırlı davranmıştır.", digital: "Oyunlarda, mesajlarda veya sosyal medyada öfkeyle hakaret etmemek." },
-      { title: "Hoşgörü", icon: "fa-users", image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1200&auto=format&fit=crop", definition: "Farklı düşünce ve davranışlara anlayışla yaklaşmaktır.", verse: "Dinde zorlama yoktur. (Bakara, 256)", hadith: "Peygamberimiz farklı insanlara karşı anlayışlı davranmıştır.", digital: "İnternette farklı görüşlere hakaret etmeden yaklaşmak." },
-      { title: "Yardımlaşma", icon: "fa-hands-helping", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop", definition: "İnsanların birbirine destek olması ve iyiliği paylaşmasıdır.", verse: "İyilik ve takva üzerinde yardımlaşın. (Maide, 2)", hadith: "Mümin müminin kardeşidir.", digital: "Faydalı bilgi paylaşmak, ihtiyaç sahiplerine çevrim içi destek olmak." },
-      { title: "Güven", icon: "fa-shield-alt", image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop", definition: "İnsanların birbirine inanması ve güven duymasıdır.", verse: "Emanetleri ehline verin. (Nisa, 58)", hadith: "Müslüman, insanların elinden ve dilinden emin olduğu kişidir.", digital: "Güvenilir internet sitelerini kullanmak, şifreleri ve kişisel bilgileri korumak." },
-      { title: "Emanet", icon: "fa-lock", image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop", definition: "Korunması gereken bir şeyi güvenle muhafaza etmektir.", verse: "Allah size emanetleri ehline vermenizi emrediyor. (Nisa, 58)", hadith: "Peygamberimiz 'El-Emin' olarak bilinirdi.", digital: "Başkasının hesabını izinsiz kullanmamak, kişisel bilgileri korumak." }
+      {
+        title: "Dürüstlük",
+        icon: "fas fa-handshake",
+        definition: "Herhangi bir durumda doğruyu söylemek ve yaşamak",
+        hadis: "\"Dürüstlük cennete, cennet de dürüst kulunun yanına gider.\" Hz. Muhammed",
+        digital: "Sosyal medyada profil bilgilerini gerçekçi tutmak, yalan haber paylaşmamak",
+        img: "https://via.placeholder.com/400x300?text=Dürüstlük"
+      },
+      {
+        title: "Saygı",
+        icon: "fas fa-heart",
+        definition: "Başkasının kişiliğine, fikirlerine ve inançlarına değer vermek",
+        hadis: "\"Müslüman, Müslüman'ın dostudur. Ona yardım eder, onu korur, onun hakkını gözetir.\"",
+        digital: "Çevrimiçi tartışmalarda saygılı davranmak, ayrımcılık yapmamak",
+        img: "https://via.placeholder.com/400x300?text=Saygı"
+      },
+      {
+        title: "Sorumluluk",
+        icon: "fas fa-shield-alt",
+        definition: "Yaptıklarımızdan sorumlu olmak ve bunun sonuçlarını kabullenme",
+        hadis: "\"Her biriniz çoban(dir) ve her çobandan soru sorulacak.\" Hz. Muhammed",
+        digital: "Çevrimiçi yaptığınız şeylerden sorumlu olmak, zararlı içerik paylaşmamak",
+        img: "https://via.placeholder.com/400x300?text=Sorumluluk"
+      },
+      {
+        title: "Empati",
+        icon: "fas fa-users",
+        definition: "Başka birinin yerine kendimizi koyarak onun duygularını anlama",
+        hadis: "\"Sizden hiçbiri gerçek mümin değildir, siz komşunuzun iyiliğini kendi iyiliğiniz kadar sevene kadar.\"",
+        digital: "Sosyal medyada kimseye hakaret etmemek, sözlerinizin etkileri hakkında düşünmek",
+        img: "https://via.placeholder.com/400x300?text=Empati"
+      },
+      {
+        title: "Mahremiyet",
+        icon: "fas fa-lock",
+        definition: "Kişisel bilgilerin ve özel yaşantının güvenliğini sağlamak",
+        hadis: "\"Kim gizli saklanacak şeyleri açarsa, kıyamet günü muhasebesi zor olur.\"",
+        digital: "Kişisel bilgilerini paylaşmamak, başkasının mahremiyet hakkına saygı göstermek",
+        img: "https://via.placeholder.com/400x300?text=Mahremiyet"
+      },
+      {
+        title: "Adalet",
+        icon: "fas fa-balance-scale",
+        definition: "Herkese eşit muamele etmek, taraf tutmamak ve haksızlığa karşı durmak",
+        hadis: "\"Adalet gökler ve yerler tarafından sevilen haslettir.\" Hz. Muhammed",
+        digital: "Sosyal medyada yanlı olmamak, tüm insanlara eşit davranmak",
+        img: "https://via.placeholder.com/400x300?text=Adalet"
+      },
+      {
+        title: "Sabır",
+        icon: "fas fa-hourglass-half",
+        definition: "Zorluklar karşısında sakin kalmak, aceleci davranmamak",
+        hadis: "\"Sabır fena değildir. Sabır, Allah'ın malından bir hazinedir.\" Hz. Muhammed",
+        digital: "Sosyal medyada kin tutmamak, cevabına hızlı kızmadan çalışmak",
+        img: "https://via.placeholder.com/400x300?text=Sabır"
+      },
+      {
+        title: "Çalışkanlık",
+        icon: "fas fa-briefcase",
+        definition: "Hedefe ulaşmak için isinatı ve çabayı göstermek",
+        hadis: "\"Sizin için en iyi kazanç, kendi elinizin kazancıdır.\" Hz. Muhammed",
+        digital: "Çevrimiçi görevleri ciddiye almak ve sorumluluk sahibi olmak",
+        img: "https://via.placeholder.com/400x300?text=Çalışkanlık"
+      },
+      {
+        title: "Paylaşımcılık",
+        icon: "fas fa-gift",
+        definition: "Sahip olduğumuz ile başkalarını kapsayıp onlara yardım etme",
+        hadis: "\"Bilgi paylaşan kişi, bilgiye hıfız olur. Bilgiyi saklayan kişi ise cinler tarafından lanete uğrar.\"",
+        digital: "Faydalı bilgiler paylaşmak, başkalarına yardım etmek",
+        img: "https://via.placeholder.com/400x300?text=Paylaşımcılık"
+      },
+      {
+        title: "Çevreye Duyarlılık",
+        icon: "fas fa-leaf",
+        definition: "Doğal kaynakları koruyor, çevreye zarar vermemek",
+        hadis: "\"Dünya yeşilliği ve güzelliği çok arzu edilir. Allah seni bunu koruması için tayin etmiştir.\"",
+        digital: "Çevreyi koruyucu dijital tercihler yapmak",
+        img: "https://via.placeholder.com/400x300?text=Çevre"
+      },
+      {
+        title: "Dayanışma",
+        icon: "fas fa-people-arrows",
+        definition: "Zor dönemlerde birbirinin yanında olmak, birlik sağlamak",
+        hadis: "\"Gücü olanın, gücü olmayandan hiç farklı olmadığı ortada değildir.\" Hz. Muhammed",
+        digital: "Çevrimiçi toplulukta dayanışmayı sağlamak, kötü muamelede karşı durmak",
+        img: "https://via.placeholder.com/400x300?text=Dayanışma"
+      },
+      {
+        title: "Bilimsellik",
+        icon: "fas fa-flask",
+        definition: "Bilgiye dayalı kararlar almak, yanlış haberlere inanmamak",
+        hadis: "\"İlim, boş iman olmaz; iman, ilim olmaz.\" (Hadis-i Kudsi)",
+        digital: "Sosyal medyada yalan haberler paylaşmamak, kaynağını kontrol etmek",
+        img: "https://via.placeholder.com/400x300?text=Bilimsellik"
+      },
+      {
+        title: "Affedicilik",
+        icon: "fas fa-dove",
+        definition: "İnsanların hatalarını affetme, kırgınlığı unutup barışmak",
+        hadis: "\"İn Allah muhakkak affah kadirun, yuhib al-afff.\" (Affedicilik sevgilidir.)",
+        digital: "Birilerine karşı öfkeyi kontrol etmek ve affetmek",
+        img: "https://via.placeholder.com/400x300?text=Affedicilik"
+      },
+      {
+        title: "İlgililik",
+        icon: "fas fa-hands-helping",
+        definition: "Başkasının ihtiyaçlarını görmek ve yardım etmek",
+        hadis: "\"En iyi insanlar, insanlara en faydalısı olandır.\" Hz. Muhammed",
+        digital: "Sosyal medyada ihtiyaç halindeki insanlara destek olmak",
+        img: "https://via.placeholder.com/400x300?text=İlgililik"
+      },
+      {
+        title: "Kütürlü Olma",
+        icon: "fas fa-user-tie",
+        definition: "Sosyal kuralları bilerek ve uygulayarak davranmak",
+        hadis: "\"En çok sevilen insan, en kültürlü olandır.\" Hz. Muhammed",
+        digital: "Çevrimiçi sohbetlerde kültürlü ve hazır cevapları vermek",
+        img: "https://via.placeholder.com/400x300?text=Kültür"
+      },
+      {
+        title: "İçerilik",
+        icon: "fas fa-lightbulb",
+        definition: "İçeriyi düşünerek, analiz yaparak tutumu belirleme",
+        hadis: "\"Akıl, bilgelik, düşüncelerin temeli olan şeydir.\" Hz. Muhammed",
+        digital: "Sosyal medyada kodu olmayan paylaşımları teyit etmek",
+        img: "https://via.placeholder.com/400x300?text=İçerilik"
+      }
     ];
 
-    function renderConcepts() {
-      const grid = document.getElementById('conceptsGrid');
-      grid.innerHTML = concepts.map((concept, index) => `
-        <article class="concept-card" data-index="${index}">
+    const quizzes = [
+      { question: "Dürüstlük nedir?", options: ["Yalan söylemek", "Doğruyu söylemek", "Sessiz kalmak", "Hileyle kazanmak"], correct: 1 },
+      { question: "Başkasının duygularını anlama eylemine ne denir?", options: ["Saygı", "Empati", "Sorumluluk", "Adalet"], correct: 1 },
+      { question: "Dijital dünyada mahremiyet nedir?", options: ["Herşeyi paylaşmak", "Kişisel bilgileri korukmak", "Başkasını takip etmek", "Sosyal medyada çok paylaşmak"], correct: 1 },
+      { question: "Adalet ne demektir?", options: ["Taraf olmak", "Eşit muamele etmek", "Haksızlığa katılmak", "Birini tercih etmek"], correct: 1 },
+      { question: "Sabır hangi ahlaki değerdir?", options: ["Acele davranmak", "Zorluklar karşısında sakin kalmak", "Kaçıp gitmek", "Kızmak"], correct: 1 },
+      { question: "Çalışkanlık nedir?", options: ["Tembel olmak", "Hedefe ulaşmak için çaba göstermek", "Kimseye yardım etmemek", "Sorumluluğundan kaçmak"], correct: 1 },
+      { question: "Paylaşımcılık ne demektir?", options: ["Hiçkimseyle paylaşmamak", "Sahip olduklarını başkalarıyla paylaşmak", "Sadece kendine sahip olmak", "Kıskançlık yapmak"], correct: 1 },
+      { question: "Çevreye duyarlılık nedir?", options: ["Çevreyi kirleten", "Doğal kaynakları korumak", "Atıkları öylece bırakmak", "Ormanları kesmek"], correct: 1 },
+      { question: "Dayanışma ne demektir?", options: ["Yalnız olmak", "Zor dönemlerde birbirinin yanında olmak", "Başkasını engellemek", "Kendi çıkarını düşünmek"], correct: 1 },
+      { question: "Bilimsellik hangi özelliktir?", options: ["Yanlış haberlere inanmak", "Bilgiye dayalı kararlar almak", "Hiç sorgulamadan inanmak", "Kaynaksız paylaşmak"], correct: 1 },
+      { question: "Affedicilik nedir?", options: ["İnsanları cezalandırmak", "Hatalarını affetip barışmak", "Kırgınlığını unutmamak", "Sonsuza kadar kızıp kalmak"], correct: 1 },
+      { question: "İlgililik nedir?", options: ["Kimseye önem vermemek", "Başkasının ihtiyacını görmek ve yardım etmek", "Sadece kendini düşünmek", "Kötü haberleri duyunca sevinmek"], correct: 1 },
+      { question: "Kültür nedir?", options: ["Kuralları hiçe saymak", "Sosyal kuralları bilerek uygulamak", "Özensiz davranış", "Başkasını aşağılamak"], correct: 1 },
+      { question: "İçerilik nedir?", options: ["Hiç düşünmeden karar almak", "İçeriyi düşünerek analiz yapıp karar almak", "Hep aynı şeyi yapmak", "Başkasına ayak uydurmak"], correct: 1 },
+      { question: "Sosyal medyada ahlaki davranış nedir?", options: ["Herkese hakaret etmek", "Yanlış haberler paylaşmak", "Mahremiyet hakkına saygı göstermek ve doğru davranmak", "Aynıkları takip etmek"], correct: 2 }
+    ];
+
+    // DOM Elements
+    const conceptsGrid = document.getElementById('conceptsGrid');
+    const searchInput = document.getElementById('searchInput');
+    const quizContent = document.getElementById('quizContent');
+    const quizResult = document.getElementById('quizResult');
+    const progressFill = document.getElementById('progressFill');
+    const questionNumber = document.getElementById('questionNumber');
+    const progressPercentage = document.getElementById('progressPercentage');
+    const backToTopBtn = document.getElementById('backToTop');
+    const loader = document.getElementById('loader');
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+    let answered = false;
+
+    function renderConcepts(items = concepts) {
+      conceptsGrid.innerHTML = '';
+      items.forEach((concept, index) => {
+        const card = document.createElement('div');
+        card.className = 'concept-card';
+        card.innerHTML = `
           <div class="card-image">
-            <img src="${concept.image}" alt="${concept.title}" loading="lazy">
-            <span class="card-badge">Kavram ${index + 1}</span>
+            <img src="${concept.img}" alt="${concept.title}">
+            <span class="card-badge">${concept.title}</span>
           </div>
           <div class="card-body">
-            <h3 class="card-title"><i class="fas ${concept.icon}"></i> ${concept.title}</h3>
+            <h3 class="card-title"><i class="${concept.icon}"></i>${concept.title}</h3>
             <div class="card-section">
-              <div class="card-label"><i class="fas fa-book"></i> Tanım</div>
+              <span class="card-label"><i class="fas fa-book"></i> Tanım</span>
               <p class="card-text">${concept.definition}</p>
             </div>
             <div class="card-section">
-              <div class="card-label"><i class="fas fa-quran"></i> Ayet</div>
+              <span class="card-label"><i class="fas fa-quran"></i> Hadis</span>
               <div class="quote-box">
-                <p>${concept.verse}</p>
+                <p>${concept.hadis}</p>
               </div>
             </div>
             <div class="card-section">
-              <div class="card-label"><i class="fas fa-mosque"></i> Hadis / Sünnet</div>
-              <p class="card-text">${concept.hadith}</p>
-            </div>
-            <div class="card-section">
-              <div class="card-label"><i class="fas fa-laptop"></i> Dijital Karşılığı</div>
-              <span class="digital-tag"><i class="fas fa-wifi"></i> ${concept.digital}</span>
+              <span class="card-label"><i class="fas fa-globe"></i> Dijital Örnek</span>
+              <p class="card-text">${concept.digital}</p>
+              <span class="digital-tag">
+                <i class="fas fa-check-circle"></i> Dijital Ahlak
+              </span>
             </div>
           </div>
-        </article>
-      `).join('');
-    }
-
-    function searchConcept() {
-      const input = document.getElementById('searchInput').value.toLocaleLowerCase('tr-TR');
-      const cards = document.querySelectorAll('.concept-card');
-      cards.forEach(card => {
-        const text = card.innerText.toLocaleLowerCase('tr-TR');
-        if (text.includes(input)) {
-          card.style.display = 'block';
-          card.style.animation = 'fadeInUp 0.5s ease';
-        } else {
-          card.style.display = 'none';
-        }
+        `;
+        conceptsGrid.appendChild(card);
+        setTimeout(() => card.classList.add('visible'), index * 100);
       });
     }
 
-    const questions = [
-      {q: "Başkasının fotoğrafını izinsiz paylaşmamak hangi değerdir?", a: ["Ölçülülük", "Vefa", "Mahremiyet"], c: 2},
-      {q: "Doğruluğundan emin olmadığımız haberi paylaşmamak hangi değeri gösterir?", a: ["Dürüstlük", "Sabır", "Hoşgörü"], c: 0},
-      {q: "Yorum yazmadan önce karşı tarafın duygusunu düşünmek hangi kavramdır?", a: ["Emanet", "Adalet", "Empati"], c: 2},
-      {q: "İzinsiz içerik kopyalamamak hangi değerle ilgilidir?", a: ["Merhamet", "Nezaket", "Kul Hakkı"], c: 2},
-      {q: "Ekran süresini dengeli kullanmak hangi kavramdır?", a: ["Ölçülülük", "Adalet", "Mahremiyet"], c: 0},
-      {q: "Sosyal medyada hakaret etmemek hangi değeri gösterir?", a: ["Saygı", "Gösteriş", "İhmal"], c: 0},
-      {q: "Kırıcı mesaj yerine nazik bir ifade kullanmak hangi kavramdır?", a: ["Nezaket", "Öfke", "Kul Hakkı"], c: 0},
-      {q: "Zor durumda olan biriyle alay etmemek hangi değeri gösterir?", a: ["Rekabet", "Merhamet", "Dürüstlük"], c: 1},
-      {q: "Bir paylaşımın sonuçlarını düşünerek hareket etmek hangi kavramdır?", a: ["Sabırsızlık", "Sorumluluk", "Kıskançlık"], c: 1},
-      {q: "Bir kişiyi sosyal medyada haksız yere suçlamamak hangi değerdir?", a: ["İsraf", "Adalet", "Tembellik"], c: 1},
-      {q: "Öfkeliyken hakaret etmemek hangi değeri gösterir?", a: ["Sabır", "Kul Hakkı", "Gösteriş"], c: 0},
-      {q: "Farklı görüşlere hakaret etmeden yaklaşmak hangi kavramdır?", a: ["Dürüstlük", "İhmal", "Hoşgörü"], c: 2},
-      {q: "Faydalı bilgi paylaşmak ve destek olmak hangi değerle ilgilidir?", a: ["Yardımlaşma", "Kıskançlık", "Sabırsızlık"], c: 0},
-      {q: "Güvenilir internet sitelerini kullanmak ve şifreleri korumak hangi kavramla ilişkilidir?", a: ["Rekabet", "Güven", "Gösteriş"], c: 1},
-      {q: "Başkasının hesabını izinsiz kullanmamak hangi değerdir?", a: ["Öfke", "Emanet", "Tembellik"], c: 1}
-    ];
-
-    let currentQuestion = 0;
-    let score = 0;
-    let answered = 0;
-
-    function initQuiz() {
-      const quizArea = document.getElementById('quizArea');
-      const quizProgress = document.getElementById('quizProgress');
-      const quizResult = document.getElementById('quizResult');
-      quizArea.innerHTML = '';
-      quizProgress.style.display = 'flex';
-      quizResult.classList.remove('show');
-      currentQuestion = 0;
-      score = 0;
-      answered = 0;
-      updateProgress();
-      showQuestion(0);
-    }
-
-    function showQuestion(index) {
-      const quizArea = document.getElementById('quizArea');
-      const item = questions[index];
-      const card = document.createElement('div');
-      card.className = 'quiz-card';
-      card.innerHTML = `
-        <div class="quiz-number">${index + 1}</div>
-        <p class="quiz-question">${item.q}</p>
+    function showQuiz() {
+      answered = false;
+      const quiz = quizzes[currentQuestionIndex];
+      const quizCard = document.createElement('div');
+      quizCard.className = 'quiz-card active';
+      quizCard.innerHTML = `
+        <div class="quiz-number">${currentQuestionIndex + 1}</div>
+        <h3 class="quiz-question">${quiz.question}</h3>
         <div class="quiz-options">
-          ${item.a.map((choice, i) => `
-            <div class="quiz-option" onclick="selectOption(this, ${i}, ${item.c}, ${index})">
-              <span class="option-letter">${String.fromCharCode(65 + i)}</span>
-              <span>${choice}</span>
+          ${quiz.options.map((option, index) => `
+            <div class="quiz-option" onclick="answerQuestion(${index}, ${quiz.correct})">
+              <div class="option-letter">${String.fromCharCode(65 + index)}</div>
+              <span>${option}</span>
             </div>
           `).join('')}
         </div>
       `;
-      quizArea.appendChild(card);
-      setTimeout(() => card.classList.add('active'), 50);
+      quizContent.innerHTML = '';
+      quizContent.appendChild(quizCard);
+      updateProgress();
     }
 
-    function selectOption(element, selected, correct, qIndex) {
-      const card = element.closest('.quiz-card');
-      if (card.dataset.answered === 'true') return;
-      card.dataset.answered = 'true';
-      answered++;
-      const options = card.querySelectorAll('.quiz-option');
-      options.forEach((opt, i) => {
-        opt.classList.add('disabled');
-        if (i === correct) {
-          opt.classList.add('correct');
-        } else if (i === selected && i !== correct) {
-          opt.classList.add('wrong');
+    function answerQuestion(selectedIndex, correctIndex) {
+      if (answered) return;
+      answered = true;
+
+      const options = document.querySelectorAll('.quiz-option');
+      options.forEach((option, index) => {
+        option.classList.add('disabled');
+        if (index === correctIndex) {
+          option.classList.add('correct');
+        } else if (index === selectedIndex && selectedIndex !== correctIndex) {
+          option.classList.add('wrong');
         }
       });
-      if (selected === correct) score++;
-      updateProgress();
+
+      if (selectedIndex === correctIndex) {
+        score++;
+      }
+
       setTimeout(() => {
-        if (qIndex < questions.length - 1) {
-          card.style.opacity = '0';
-          card.style.transform = 'translateX(-50px)';
-          setTimeout(() => {
-            card.remove();
-            showQuestion(qIndex + 1);
-          }, 400);
+        currentQuestionIndex++;
+        if (currentQuestionIndex < quizzes.length) {
+          showQuiz();
         } else {
-          showResult();
+          showResults();
         }
-      }, 1200);
+      }, 1500);
     }
 
     function updateProgress() {
-      document.getElementById('progressText').textContent = `Soru ${Math.min(answered + 1, questions.length)} / ${questions.length}`;
-      document.getElementById('scoreText').textContent = `Puan: ${score}`;
-      document.getElementById('progressFill').style.width = `${(answered / questions.length) * 100}%`;
+      const progress = ((currentQuestionIndex + 1) / quizzes.length) * 100;
+      progressFill.style.width = progress + '%';
+      questionNumber.textContent = `${currentQuestionIndex + 1}/${quizzes.length}`;
+      progressPercentage.textContent = `${Math.round(progress)}%`;
     }
 
-    function showResult() {
-      document.getElementById('quizArea').innerHTML = '';
-      document.getElementById('quizProgress').style.display = 'none';
-      const result = document.getElementById('quizResult');
-      result.classList.add('show');
-      document.getElementById('resultScore').textContent = `${score} / ${questions.length}`;
-      const percentage = (score / questions.length) * 100;
-      let message = '';
-      if (percentage >= 90) message = 'Mükemmel! Dijital ahlak konusunda uzman seviyesindesiniz!';
-      else if (percentage >= 70) message = 'Çok iyi! Dijital ahlak bilginiz oldukça gelişmiş.';
-      else if (percentage >= 50) message = 'İyi gidiyorsunuz! Biraz daha pratik yapabilirsiniz.';
-      else message = 'Daha fazla çalışmanız gerekiyor. Kavramları tekrar inceleyin!';
-      document.getElementById('resultMessage').textContent = message;
-      const starsContainer = document.getElementById('resultStars');
-      starsContainer.innerHTML = '';
-      const starCount = Math.ceil((score / questions.length) * 5);
-      for (let i = 0; i < 5; i++) {
-        const star = document.createElement('i');
-        star.className = 'fas fa-star' + (i < starCount ? ' filled' : '');
-        if (i < starCount) {
-          star.style.animationDelay = `${i * 0.1}s`;
-        }
-        starsContainer.appendChild(star);
+    function showResults() {
+      const percentage = Math.round((score / quizzes.length) * 100);
+      const stars = Math.ceil((percentage / 100) * 5);
+      
+      quizContent.style.display = 'none';
+      quizResult.classList.add('show');
+      quizResult.innerHTML = `
+        <div class="result-icon">
+          <i class="fas fa-check"></i>
+        </div>
+        <div class="result-score">${score}/${quizzes.length}</div>
+        <p class="result-message">Başarınız: ${percentage}%</p>
+        <div class="result-stars">
+          ${[...Array(5)].map((_, i) => `
+            <i class="fas fa-star ${i < stars ? 'filled' : ''}"></i>
+          `).join('')}
+        </div>
+        <button class="btn btn-primary" onclick="resetQuiz()">
+          <i class="fas fa-redo"></i>
+          Quiz'i Tekrarla
+        </button>
+      `;
+    }
+
+    function resetQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      answered = false;
+      quizResult.classList.remove('show');
+      quizContent.style.display = '';
+      showQuiz();
+    }
+
+    // Search functionality
+    searchInput.addEventListener('input', (e) => {
+      const searchTerm = e.target.value.toLowerCase();
+      const filtered = concepts.filter(concept =>
+        concept.title.toLowerCase().includes(searchTerm) ||
+        concept.definition.toLowerCase().includes(searchTerm) ||
+        concept.digital.toLowerCase().includes(searchTerm)
+      );
+      renderConcepts(filtered);
+    });
+
+    // Back to top button
+    window.addEventListener('scroll', () => {
+      if (window.pageYOffset > 300) {
+        backToTopBtn.classList.add('visible');
+      } else {
+        backToTopBtn.classList.remove('visible');
       }
-    }
+    });
 
-    function restartQuiz() {
-      initQuiz();
-    }
-
-    function scrollToTop() {
+    function backToTop() {
       window.scrollTo({ top: 0, behavior: 'smooth' });
     }
 
     function toggleMobileMenu() {
       const navLinks = document.querySelector('.nav-links');
       navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
-      navLinks.style.position = 'absolute';
-      navLinks.style.top = '72px';
-      navLinks.style.left = '0';
-      navLinks.style.right = '0';
-      navLinks.style.background = 'rgba(255,255,255,0.95)';
-      navLinks.style.backdropFilter = 'blur(20px)';
-      navLinks.style.flexDirection = 'column';
-      navLinks.style.padding = '20px';
-      navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
     }
 
-    // Counter Animation
-    function animateCounters() {
-      const counters = document.querySelectorAll('.counter');
-      counters.forEach(counter => {
-        const target = parseInt(counter.getAttribute('data-target'));
-        const duration = 2000;
-        const step = target / (duration / 16);
-        let current = 0;
-        const updateCounter = () => {
-          current += step;
-          if (current < target) {
-            counter.textContent = Math.floor(current);
-            requestAnimationFrame(updateCounter);
-          } else {
-            counter.textContent = target;
-          }
-        };
-        updateCounter();
-      });
-    }
+    // Counter animation
+    const counters = document.querySelectorAll('.counter');
+    const speed = 200;
 
-    // Scroll Reveal
-    function revealOnScroll() {
-      const cards = document.querySelectorAll('.concept-card');
-      cards.forEach((card, index) => {
-        const rect = card.getBoundingClientRect();
-        if (rect.top < window.innerHeight - 100) {
-          setTimeout(() => card.classList.add('visible'), index * 100);
+    const runCounter = (counter) => {
+      const target = +counter.getAttribute('data-target');
+      const increment = target / speed;
+      let count = 0;
+
+      const updateCount = () => {
+        count += increment;
+        if (count < target) {
+          counter.textContent = Math.ceil(count);
+          setTimeout(updateCount, 10);
+        } else {
+          counter.textContent = target;
+        }
+      };
+      updateCount();
+    };
+
+    const observerOptions = {
+      threshold: 0.5
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          runCounter(entry.target);
+          observer.unobserve(entry.target);
         }
       });
-    }
+    }, observerOptions);
 
-    // Navbar scroll effect
-    function handleNavbar() {
-      const navbar = document.getElementById('navbar');
-      if (window.scrollY > 50) {
-        navbar.classList.add('scrolled');
-      } else {
-        navbar.classList.remove('scrolled');
-      }
-    }
-
-    // Back to top button
-    function handleBackToTop() {
-      const btn = document.getElementById('backToTop');
-      if (window.scrollY > 500) {
-        btn.classList.add('visible');
-      } else {
-        btn.classList.remove('visible');
-      }
-    }
+    counters.forEach(counter => observer.observe(counter));
 
     // Create particles
-    function createParticles() {
-      const container = document.getElementById('particles');
-      for (let i = 0; i < 30; i++) {
-        const particle = document.createElement('div');
-        particle.className = 'particle';
-        particle.style.left = Math.random() * 100 + '%';
-        particle.style.animationDelay = Math.random() * 15 + 's';
-        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
-        container.appendChild(particle);
-      }
+    const particlesContainer = document.getElementById('particles');
+    for (let i = 0; i < 50; i++) {
+      const particle = document.createElement('div');
+      particle.className = 'particle';
+      particle.style.left = Math.random() * 100 + '%';
+      particle.style.animationDelay = Math.random() * 15 + 's';
+      particlesContainer.appendChild(particle);
     }
 
     // Initialize
     window.addEventListener('load', () => {
-      document.getElementById('loader').classList.add('hidden');
+      loader.classList.add('hidden');
       renderConcepts();
-      createParticles();
-      animateCounters();
-      initQuiz();
-      revealOnScroll();
-    });
-
-    window.addEventListener('scroll', () => {
-      handleNavbar();
-      handleBackToTop();
-      revealOnScroll();
+      showQuiz();
     });
   </script>
 </body>
