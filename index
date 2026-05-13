@@ -1,484 +1,1443 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Dijital Ahlak Sözlüğü</title>
-
-<style>
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-font-family:Arial, sans-serif;
-}
-
-body{
-background:#f4f8fb;
-color:#1f2937;
-line-height:1.6;
-}
-
-header{
-background:linear-gradient(135deg,#0f766e,#0c4a6e);
-color:white;
-padding:60px 20px;
-text-align:center;
-}
-
-header h1{
-font-size:48px;
-margin-bottom:15px;
-}
-
-header p{
-font-size:20px;
-max-width:800px;
-margin:auto;
-}
-
-nav{
-background:white;
-padding:15px;
-text-align:center;
-box-shadow:0 2px 10px rgba(0,0,0,0.1);
-position:sticky;
-top:0;
-z-index:100;
-}
-
-nav a{
-margin:0 15px;
-text-decoration:none;
-color:#0f766e;
-font-weight:bold;
-}
-
-.container{
-max-width:1200px;
-margin:auto;
-padding:30px 20px;
-}
-
-.section{
-background:white;
-padding:30px;
-border-radius:20px;
-margin-bottom:30px;
-box-shadow:0 6px 20px rgba(0,0,0,0.08);
-}
-
-.section h2{
-color:#0f766e;
-margin-bottom:15px;
-}
-
-.search-box{
-margin-bottom:25px;
-}
-
-.search-box input{
-width:100%;
-padding:15px;
-border-radius:15px;
-border:2px solid #cbd5e1;
-font-size:16px;
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(auto-fit,minmax(320px,1fr));
-gap:25px;
-}
-
-.card{
-background:white;
-border-radius:20px;
-overflow:hidden;
-box-shadow:0 4px 18px rgba(0,0,0,0.08);
-transition:0.3s;
-}
-
-.card:hover{
-transform:translateY(-5px);
-}
-
-.card img{
-width:100%;
-height:220px;
-object-fit:cover;
-}
-
-.card-content{
-padding:20px;
-}
-
-.card h3{
-color:#0f766e;
-margin-bottom:10px;
-font-size:28px;
-}
-
-.label{
-font-weight:bold;
-color:#0f766e;
-}
-
-.quote{
-background:#ecfeff;
-padding:12px;
-border-left:5px solid #14b8a6;
-border-radius:10px;
-margin:10px 0;
-}
-
-.quiz-box{
-background:#f8fafc;
-padding:20px;
-border-radius:15px;
-margin-bottom:20px;
-border:1px solid #e2e8f0;
-}
-
-.quiz-box button{
-display:block;
-width:100%;
-margin-top:10px;
-padding:12px;
-border:none;
-border-radius:10px;
-background:#e0f2fe;
-cursor:pointer;
-font-size:15px;
-}
-
-.quiz-box button:hover{
-background:#bae6fd;
-}
-
-footer{
-background:#0f766e;
-color:white;
-text-align:center;
-padding:25px;
-margin-top:40px;
-}
-
-@media(max-width:768px){
-header h1{
-font-size:36px;
-}
-}
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dijital Ahlak Sözlüğü | Geleceğin Değerleri</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    :root {
+      --primary: #0f766e;
+      --primary-dark: #0d5c56;
+      --primary-light: #14b8a6;
+      --secondary: #0c4a6e;
+      --accent: #f59e0b;
+      --accent-light: #fbbf24;
+      --bg: #f0f9ff;
+      --card-bg: #ffffff;
+      --text: #1e293b;
+      --text-light: #64748b;
+      --border: #e2e8f0;
+      --shadow: 0 4px 6px -1px rgba(0,0,0,0.1), 0 2px 4px -2px rgba(0,0,0,0.1);
+      --shadow-lg: 0 20px 25px -5px rgba(0,0,0,0.1), 0 8px 10px -6px rgba(0,0,0,0.1);
+      --shadow-colored: 0 20px 40px -10px rgba(15,118,110,0.3);
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.7;
+      overflow-x: hidden;
+    }
+    ::-webkit-scrollbar { width: 10px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--primary); border-radius: 5px; }
+    ::-webkit-scrollbar-thumb:hover { background: var(--primary-dark); }
+    .bg-animation {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: -1;
+      background: linear-gradient(135deg, #f0f9ff 0%, #e0f2fe 50%, #f0fdfa 100%);
+      overflow: hidden;
+    }
+    .bg-animation .circle {
+      position: absolute;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(15,118,110,0.08), rgba(20,184,166,0.05));
+      animation: float 20s infinite ease-in-out;
+    }
+    .bg-animation .circle:nth-child(1) { width: 400px; height: 400px; top: -100px; left: -100px; animation-delay: 0s; }
+    .bg-animation .circle:nth-child(2) { width: 300px; height: 300px; top: 50%; right: -50px; animation-delay: -5s; }
+    .bg-animation .circle:nth-child(3) { width: 200px; height: 200px; bottom: -50px; left: 30%; animation-delay: -10s; }
+    .bg-animation .circle:nth-child(4) { width: 150px; height: 150px; top: 20%; left: 60%; animation-delay: -15s; }
+    @keyframes float {
+      0%, 100% { transform: translate(0, 0) scale(1); }
+      25% { transform: translate(30px, -30px) scale(1.1); }
+      50% { transform: translate(-20px, 20px) scale(0.9); }
+      75% { transform: translate(20px, 10px) scale(1.05); }
+    }
+    .navbar {
+      position: fixed;
+      top: 0; left: 0; right: 0;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(20px);
+      -webkit-backdrop-filter: blur(20px);
+      box-shadow: 0 4px 30px rgba(0,0,0,0.1);
+      z-index: 1000;
+      padding: 0 24px;
+      transition: all 0.3s ease;
+    }
+    .nav-container {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      height: 72px;
+    }
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--primary);
+      text-decoration: none;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      transition: transform 0.3s ease;
+    }
+    .logo:hover { transform: scale(1.05); }
+    .logo i { font-size: 1.8rem; color: var(--accent); }
+    .nav-links {
+      display: flex;
+      gap: 8px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--text);
+      text-decoration: none;
+      font-weight: 500;
+      font-size: 0.95rem;
+      padding: 8px 16px;
+      border-radius: 12px;
+      transition: all 0.3s ease;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 50%;
+      width: 0; height: 2px;
+      background: var(--primary);
+      transition: all 0.3s ease;
+      transform: translateX(-50%);
+    }
+    .nav-links a:hover { color: var(--primary); background: rgba(15,118,110,0.08); }
+    .nav-links a:hover::after { width: 60%; }
+    .mobile-menu-btn {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--primary);
+      cursor: pointer;
+    }
+    .hero {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 100px 24px 60px;
+      overflow: hidden;
+    }
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: linear-gradient(135deg, rgba(15,118,110,0.95) 0%, rgba(12,74,110,0.95) 100%);
+      z-index: 1;
+    }
+    .hero-particles {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .particle {
+      position: absolute;
+      width: 4px; height: 4px;
+      background: rgba(255,255,255,0.3);
+      border-radius: 50%;
+      animation: particle-float 15s infinite;
+    }
+    @keyframes particle-float {
+      0%, 100% { transform: translateY(100vh) rotate(0deg); opacity: 0; }
+      10% { opacity: 1; }
+      90% { opacity: 1; }
+      100% { transform: translateY(-100vh) rotate(720deg); opacity: 0; }
+    }
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      text-align: center;
+      max-width: 900px;
+      animation: fadeInUp 1s ease-out;
+    }
+    .hero-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,255,0.15);
+      backdrop-filter: blur(10px);
+      padding: 8px 20px;
+      border-radius: 50px;
+      color: #fff;
+      font-size: 0.9rem;
+      margin-bottom: 24px;
+      border: 1px solid rgba(255,255,255,0.2);
+      animation: fadeInDown 0.8s ease-out 0.2s both;
+    }
+    .hero-badge i { color: var(--accent-light); }
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 6vw, 4.5rem);
+      color: #fff;
+      margin-bottom: 20px;
+      line-height: 1.2;
+      text-shadow: 0 4px 20px rgba(0,0,0,0.2);
+      animation: fadeInUp 0.8s ease-out 0.4s both;
+    }
+    .hero h1 span {
+      background: linear-gradient(135deg, var(--accent-light), var(--accent));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .hero p {
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 40px;
+      max-width: 700px;
+      margin-left: auto;
+      margin-right: auto;
+      animation: fadeInUp 0.8s ease-out 0.6s both;
+    }
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      justify-content: center;
+      flex-wrap: wrap;
+      animation: fadeInUp 0.8s ease-out 0.8s both;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 32px;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 1rem;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      cursor: pointer;
+      border: none;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0; left: -100%;
+      width: 100%; height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s ease;
+    }
+    .btn:hover::before { left: 100%; }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      color: #fff;
+      box-shadow: 0 10px 30px rgba(245,158,11,0.4);
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(245,158,11,0.5);
+    }
+    .btn-secondary {
+      background: rgba(255,255,255,0.15);
+      color: #fff;
+      border: 2px solid rgba(255,255,255,0.3);
+      backdrop-filter: blur(10px);
+    }
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.25);
+      border-color: rgba(255,255,255,0.5);
+      transform: translateY(-3px);
+    }
+    .hero-stats {
+      display: flex;
+      justify-content: center;
+      gap: 48px;
+      margin-top: 60px;
+      animation: fadeInUp 0.8s ease-out 1s both;
+    }
+    .stat-item {
+      text-align: center;
+      color: #fff;
+    }
+    .stat-number {
+      font-size: 2.5rem;
+      font-weight: 800;
+      background: linear-gradient(135deg, #fff, var(--accent-light));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .stat-label { font-size: 0.9rem; opacity: 0.8; }
+    @keyframes fadeInUp {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes fadeInDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .section {
+      padding: 100px 24px;
+      position: relative;
+    }
+    .container {
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+      animation: fadeInUp 0.8s ease-out;
+    }
+    .section-tag {
+      display: inline-block;
+      padding: 6px 16px;
+      background: rgba(15,118,110,0.1);
+      color: var(--primary);
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 16px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+    .section-title {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      color: var(--text);
+      margin-bottom: 16px;
+    }
+    .section-subtitle {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .purpose-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+    }
+    .purpose-content {
+      animation: fadeInLeft 0.8s ease-out;
+    }
+    .purpose-content h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .purpose-content p {
+      color: var(--text-light);
+      font-size: 1.1rem;
+      margin-bottom: 24px;
+    }
+    .purpose-features {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+    }
+    .feature-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      padding: 16px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+      transition: all 0.3s ease;
+    }
+    .feature-item:hover {
+      transform: translateX(10px);
+      box-shadow: var(--shadow-lg);
+    }
+    .feature-icon {
+      width: 48px; height: 48px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .feature-text h4 { font-size: 1.1rem; margin-bottom: 4px; }
+    .feature-text p { font-size: 0.9rem; color: var(--text-light); margin: 0; }
+    .purpose-visual {
+      position: relative;
+      animation: fadeInRight 0.8s ease-out;
+    }
+    .purpose-visual .main-img {
+      width: 100%;
+      border-radius: 24px;
+      box-shadow: var(--shadow-colored);
+      transition: transform 0.5s ease;
+    }
+    .purpose-visual:hover .main-img { transform: scale(1.02); }
+    .floating-card {
+      position: absolute;
+      background: var(--card-bg);
+      padding: 16px 24px;
+      border-radius: 16px;
+      box-shadow: var(--shadow-lg);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      animation: float-card 3s ease-in-out infinite;
+    }
+    .floating-card:nth-child(2) { top: 20px; right: -20px; animation-delay: 0s; }
+    .floating-card:nth-child(3) { bottom: 40px; left: -30px; animation-delay: -1.5s; }
+    .floating-card i {
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--accent), var(--accent-light));
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: #fff;
+    }
+    .floating-card span { font-weight: 600; font-size: 0.9rem; }
+    @keyframes float-card {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
+    }
+    @keyframes fadeInLeft {
+      from { opacity: 0; transform: translateX(-50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    @keyframes fadeInRight {
+      from { opacity: 0; transform: translateX(50px); }
+      to { opacity: 1; transform: translateX(0); }
+    }
+    .search-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      padding: 60px 24px;
+      position: relative;
+      overflow: hidden;
+    }
+    .search-section::before {
+      content: '';
+      position: absolute;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background: radial-gradient(circle, rgba(255,255,255,0.1) 1px, transparent 1px);
+      background-size: 30px 30px;
+      opacity: 0.3;
+    }
+    .search-container {
+      max-width: 700px;
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
+    }
+    .search-box {
+      position: relative;
+    }
+    .search-box i {
+      position: absolute;
+      left: 24px;
+      top: 50%;
+      transform: translateY(-50%);
+      color: var(--primary);
+      font-size: 1.2rem;
+    }
+    .search-input {
+      width: 100%;
+      padding: 20px 24px 20px 56px;
+      border: none;
+      border-radius: 20px;
+      font-size: 1.1rem;
+      font-family: 'Poppins', sans-serif;
+      background: rgba(255,255,255,0.95);
+      box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+      transition: all 0.3s ease;
+    }
+    .search-input:focus {
+      outline: none;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+      transform: translateY(-2px);
+    }
+    .search-input::placeholder { color: var(--text-light); }
+    .concepts-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+      gap: 30px;
+    }
+    .concept-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      overflow: hidden;
+      box-shadow: var(--shadow);
+      border: 1px solid var(--border);
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    .concept-card.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    .concept-card:hover {
+      transform: translateY(-8px) scale(1.02);
+      box-shadow: var(--shadow-colored);
+    }
+    .card-image {
+      position: relative;
+      height: 220px;
+      overflow: hidden;
+    }
+    .card-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+    .concept-card:hover .card-image img { transform: scale(1.1); }
+    .card-image::after {
+      content: '';
+      position: absolute;
+      bottom: 0; left: 0; right: 0;
+      height: 60%;
+      background: linear-gradient(to top, rgba(0,0,0,0.4), transparent);
+    }
+    .card-badge {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+      background: rgba(255,255,255,0.95);
+      padding: 6px 14px;
+      border-radius: 50px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--primary);
+      z-index: 2;
+      backdrop-filter: blur(10px);
+    }
+    .card-body {
+      padding: 28px;
+    }
+    .card-title {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.6rem;
+      color: var(--primary);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .card-title i { font-size: 1.3rem; color: var(--accent); }
+    .card-section {
+      margin-bottom: 16px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid var(--border);
+    }
+    .card-section:last-child { border-bottom: none; margin-bottom: 0; padding-bottom: 0; }
+    .card-label {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-weight: 600;
+      color: var(--primary);
+      font-size: 0.85rem;
+      margin-bottom: 8px;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+    .card-text { color: var(--text-light); font-size: 0.95rem; line-height: 1.7; }
+    .quote-box {
+      background: linear-gradient(135deg, #ecfeff, #f0fdfa);
+      border-left: 4px solid var(--primary-light);
+      padding: 16px 20px;
+      border-radius: 0 16px 16px 0;
+      position: relative;
+      margin-top: 8px;
+    }
+    .quote-box::before {
+      content: '"';
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--primary-light);
+      opacity: 0.3;
+      position: absolute;
+      top: -10px;
+      left: 10px;
+      line-height: 1;
+    }
+    .quote-box p { position: relative; z-index: 1; font-style: italic; color: var(--text); }
+    .digital-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: linear-gradient(135deg, rgba(245,158,11,0.1), rgba(251,191,36,0.1));
+      color: var(--accent);
+      padding: 8px 14px;
+      border-radius: 50px;
+      font-size: 0.85rem;
+      font-weight: 500;
+      margin-top: 8px;
+    }
+    .quiz-section {
+      background: linear-gradient(135deg, #f8fafc, #f1f5f9);
+    }
+    .quiz-container {
+      max-width: 800px;
+      margin: 0 auto;
+    }
+    .quiz-progress {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 40px;
+      padding: 20px;
+      background: var(--card-bg);
+      border-radius: 16px;
+      box-shadow: var(--shadow);
+    }
+    .progress-bar {
+      flex: 1;
+      height: 8px;
+      background: var(--border);
+      border-radius: 4px;
+      margin: 0 20px;
+      overflow: hidden;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--primary), var(--primary-light));
+      border-radius: 4px;
+      transition: width 0.5s ease;
+      width: 0%;
+    }
+    .quiz-card {
+      background: var(--card-bg);
+      border-radius: 24px;
+      padding: 40px;
+      box-shadow: var(--shadow-lg);
+      margin-bottom: 24px;
+      border: 1px solid var(--border);
+      transition: all 0.4s ease;
+      opacity: 0;
+      transform: translateX(50px);
+    }
+    .quiz-card.active {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    .quiz-number {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px; height: 40px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      border-radius: 12px;
+      font-weight: 700;
+      margin-bottom: 16px;
+    }
+    .quiz-question {
+      font-size: 1.3rem;
+      font-weight: 600;
+      color: var(--text);
+      margin-bottom: 24px;
+      line-height: 1.5;
+    }
+    .quiz-options {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    .quiz-option {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      padding: 16px 20px;
+      background: #f8fafc;
+      border: 2px solid var(--border);
+      border-radius: 16px;
+      cursor: pointer;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+      color: var(--text);
+    }
+    .quiz-option:hover {
+      border-color: var(--primary-light);
+      background: #f0fdfa;
+      transform: translateX(8px);
+    }
+    .quiz-option.correct {
+      border-color: #10b981;
+      background: #d1fae5;
+      color: #065f46;
+    }
+    .quiz-option.wrong {
+      border-color: #ef4444;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+    .quiz-option.disabled { pointer-events: none; opacity: 0.7; }
+    .option-letter {
+      width: 36px; height: 36px;
+      background: var(--card-bg);
+      border: 2px solid var(--border);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.9rem;
+      flex-shrink: 0;
+      transition: all 0.3s ease;
+    }
+    .quiz-option:hover .option-letter {
+      border-color: var(--primary);
+      color: var(--primary);
+    }
+    .quiz-option.correct .option-letter {
+      background: #10b981;
+      border-color: #10b981;
+      color: #fff;
+    }
+    .quiz-option.wrong .option-letter {
+      background: #ef4444;
+      border-color: #ef4444;
+      color: #fff;
+    }
+    .quiz-result {
+      text-align: center;
+      padding: 60px 40px;
+      background: var(--card-bg);
+      border-radius: 24px;
+      box-shadow: var(--shadow-lg);
+      display: none;
+    }
+    .quiz-result.show { display: block; animation: fadeInUp 0.6s ease; }
+    .result-icon {
+      width: 100px; height: 100px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 24px;
+      font-size: 3rem;
+      color: #fff;
+      animation: pulse 2s infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .result-score {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--primary);
+      margin-bottom: 8px;
+    }
+    .result-message { color: var(--text-light); font-size: 1.1rem; margin-bottom: 24px; }
+    .result-stars {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+      margin-bottom: 32px;
+    }
+    .result-stars i {
+      font-size: 2rem;
+      color: #e2e8f0;
+      transition: all 0.3s ease;
+    }
+    .result-stars i.filled { color: var(--accent); animation: star-pop 0.4s ease; }
+    @keyframes star-pop {
+      0% { transform: scale(0); }
+      50% { transform: scale(1.3); }
+      100% { transform: scale(1); }
+    }
+    .result-section {
+      background: linear-gradient(135deg, var(--primary), var(--secondary));
+      color: #fff;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+    .result-section::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0; bottom: 0;
+      background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.05'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+    }
+    .result-section .container { position: relative; z-index: 1; }
+    .result-section h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      margin-bottom: 24px;
+    }
+    .result-section p {
+      font-size: 1.2rem;
+      opacity: 0.9;
+      max-width: 700px;
+      margin: 0 auto 40px;
+    }
+    .result-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 24px;
+      margin-top: 48px;
+    }
+    .result-card {
+      background: rgba(255,255,255,0.1);
+      backdrop-filter: blur(10px);
+      padding: 32px 24px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.2);
+      transition: all 0.3s ease;
+    }
+    .result-card:hover {
+      transform: translateY(-5px);
+      background: rgba(255,255,255,0.15);
+    }
+    .result-card i {
+      font-size: 2.5rem;
+      margin-bottom: 16px;
+      color: var(--accent-light);
+    }
+    .result-card h4 { font-size: 1.1rem; margin-bottom: 8px; }
+    .result-card p { font-size: 0.9rem; opacity: 0.8; margin: 0; }
+    .footer {
+      background: var(--text);
+      color: #fff;
+      padding: 60px 24px 30px;
+    }
+    .footer-content {
+      max-width: 1400px;
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 2fr 1fr 1fr 1fr;
+      gap: 48px;
+      margin-bottom: 48px;
+    }
+    .footer-brand h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.5rem;
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .footer-brand h3 i { color: var(--accent); }
+    .footer-brand p { color: #94a3b8; font-size: 0.95rem; line-height: 1.7; }
+    .footer-links h4 {
+      font-size: 1rem;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+    .footer-links ul { list-style: none; }
+    .footer-links li { margin-bottom: 12px; }
+    .footer-links a {
+      color: #94a3b8;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: all 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .footer-links a:hover { color: var(--accent-light); transform: translateX(5px); }
+    .footer-bottom {
+      border-top: 1px solid #334155;
+      padding-top: 24px;
+      text-align: center;
+      color: #64748b;
+      font-size: 0.9rem;
+    }
+    .footer-bottom i { color: #ef4444; }
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      width: 50px; height: 50px;
+      background: linear-gradient(135deg, var(--primary), var(--primary-light));
+      color: #fff;
+      border: none;
+      border-radius: 50%;
+      cursor: pointer;
+      font-size: 1.2rem;
+      box-shadow: 0 10px 30px rgba(15,118,110,0.4);
+      opacity: 0;
+      visibility: hidden;
+      transition: all 0.3s ease;
+      z-index: 999;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .back-to-top.visible { opacity: 1; visibility: visible; }
+    .back-to-top:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 15px 40px rgba(15,118,110,0.5);
+    }
+    @media (max-width: 1024px) {
+      .purpose-grid { grid-template-columns: 1fr; }
+      .footer-content { grid-template-columns: 1fr 1fr; }
+    }
+    @media (max-width: 768px) {
+      .nav-links { display: none; }
+      .mobile-menu-btn { display: block; }
+      .hero-stats { gap: 24px; }
+      .stat-number { font-size: 1.8rem; }
+      .concepts-grid { grid-template-columns: 1fr; }
+      .footer-content { grid-template-columns: 1fr; text-align: center; }
+      .quiz-card { padding: 24px; }
+    }
+    .loader {
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      z-index: 9999;
+      transition: opacity 0.5s ease, visibility 0.5s ease;
+    }
+    .loader.hidden { opacity: 0; visibility: hidden; }
+    .loader-spinner {
+      width: 60px; height: 60px;
+      border: 4px solid var(--border);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+  </style>
+<base target="_blank">
 </head>
-
 <body>
-
-<header>
-<h1>Dijital Ahlak Sözlüğü</h1>
-<p>“Güvenli, saygılı ve bilinçli dijital dünya”</p>
-</header>
-
-<nav>
-<a href="#amac">Amaç</a>
-<a href="#kavramlar">Kavramlar</a>
-<a href="#quiz">Quiz</a>
-<a href="#sonuc">Sonuç</a>
-</nav>
-
-<div class="container">
-
-<section class="section" id="amac">
-<h2>Projenin Amacı</h2>
-
-<p>
-Bu proje; öğrencilerin dijital ortamda güvenli, saygılı, bilinçli ve sorumlu davranışlar geliştirmesine katkı sağlamak amacıyla hazırlanmıştır.
-</p>
-</section>
-
-<section class="section search-box">
-<h2>Kavram Ara</h2>
-
-<input type="text" id="searchInput"
-placeholder="Kavram ara..."
-onkeyup="searchCards()">
-</section>
-
-<section id="kavramlar" class="grid">
-
-<div class="card concept">
-<img src="https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-<h3>Adalet</h3>
-
-<p><span class="label">Slogan:</span>
-“Dijital dünyada da adil ol.”
-</p>
-
-<p><span class="label">Tanım:</span>
-Herkese hakkını vermek ve doğru davranmaktır.
-</p>
-
-<div class="quote">
-<strong>Ayet:</strong>
-“Şüphesiz Allah adaleti emreder.” (Nahl 90)
-</div>
-
-<p><span class="label">Hadis/Sünnet:</span>
-Peygamberimiz insanlar arasında adaletli davranmıştır.
-</p>
-
-<p><span class="label">Dijital Karşılığı:</span>
-Sosyal medyada haksız suçlamalardan kaçınmak.
-</p>
-</div>
-</div>
-
-<div class="card concept">
-<img src="https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-<h3>Mahremiyet</h3>
-
-<p><span class="label">Slogan:</span>
-“Her paylaşım doğru paylaşım değildir.”
-</p>
-
-<p><span class="label">Tanım:</span>
-Özel hayatı korumaktır.
-</p>
-
-<div class="quote">
-<strong>Ayet:</strong>
-“Birbirinizin gizlisini araştırmayın.” (Hucurat 12)
-</div>
-
-<p><span class="label">Hadis/Sünnet:</span>
-İnsanların gizliliğine saygı gösterilmiştir.
-</p>
-
-<p><span class="label">Dijital Karşılığı:</span>
-İzinsiz fotoğraf paylaşmamak.
-</p>
-</div>
-</div>
-
-<div class="card concept">
-<img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-<h3>Empati</h3>
-
-<p><span class="label">Slogan:</span>
-“Ekranın arkasında bir insan var.”
-</p>
-
-<p><span class="label">Tanım:</span>
-Kendini başkasının yerine koyabilmektir.
-</p>
-
-<div class="quote">
-<strong>Hadis/Sünnet:</strong>
-“Kendisi için istediğini kardeşi için istemeyen gerçek mümin olamaz.”
-</div>
-
-<p><span class="label">Dijital Karşılığı:</span>
-Yorum yapmadan önce düşünmek.
-</p>
-</div>
-</div>
-
-<div class="card concept">
-<img src="https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-<h3>Saygı</h3>
-
-<p><span class="label">Slogan:</span>
-“Yorum yapmadan önce düşün.”
-</p>
-
-<p><span class="label">Tanım:</span>
-İnsanların haklarına değer vermektir.
-</p>
-
-<div class="quote">
-<strong>Ayet:</strong>
-“Bir topluluk diğerini küçümsemesin.” (Hucurat 11)
-</div>
-
-<p><span class="label">Dijital Karşılığı:</span>
-Hakaret içerikli yorumlardan kaçınmak.
-</p>
-</div>
-</div>
-
-<div class="card concept">
-<img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-<h3>Dürüstlük</h3>
-
-<p><span class="label">Slogan:</span>
-“Doğru bilgi dijital emanettir.”
-</p>
-
-<p><span class="label">Tanım:</span>
-Doğru ve güvenilir olmaktır.
-</p>
-
-<div class="quote">
-<strong>Ayet:</strong>
-“Doğru söz söyleyin.” (Ahzab 70)
-</div>
-
-<p><span class="label">Dijital Karşılığı:</span>
-Yanlış bilgi paylaşmamak.
-</p>
-</div>
-</div>
-
-<div class="card concept">
-<img src="https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop">
-
-<div class="card-content">
-<h3>Kul Hakkı</h3>
-
-<p><span class="label">Slogan:</span>
-“İzinsiz paylaşım kul hakkıdır.”
-</p>
-
-<p><span class="label">Tanım:</span>
-Başkasının hakkını korumaktır.
-</p>
-
-<div class="quote">
-<strong>Ayet:</strong>
-“Mallarınızı aranızda haksız yollarla yemeyin.”
-</div>
-
-<p><span class="label">Dijital Karşılığı:</span>
-Telifli içerikleri izinsiz kullanmamak.
-</p>
-</div>
-</div>
-
-</section>
-
-<section class="section" id="quiz">
-
-<h2>Dijital Ahlak Quiz</h2>
-
-<div id="quizArea"></div>
-
-<h3 id="result"></h3>
-
-</section>
-
-<section class="section" id="sonuc">
-
-<h2>Beklenen Sonuç</h2>
-
-<p>
-Öğrencilerin dijital dünyada daha bilinçli,
-saygılı ve güvenli davranışlar geliştirmesi hedeflenmektedir.
-</p>
-
-</section>
-
-</div>
-
-<footer>
-<h3>Dijital Dünya Ahlakla Güzelleşir</h3>
-</footer>
-
-<script>
-
-function searchCards(){
-
-let input=document.getElementById("searchInput").value.toLowerCase();
-
-let cards=document.getElementsByClassName("concept");
-
-for(let i=0;i<cards.length;i++){
-
-let text=cards[i].innerText.toLowerCase();
-
-cards[i].style.display=
-text.includes(input) ? "block" : "none";
-}
-}
-
-const questions=[
-
-{
-q:"İzinsiz fotoğraf paylaşmamak hangi değerdir?",
-a:["Mahremiyet","Empati","Sabır"],
-c:0
-},
-
-{
-q:"Yanlış bilgi paylaşmamak hangi değerdir?",
-a:["Dürüstlük","Öfke","Tembellik"],
-c:0
-},
-
-{
-q:"Hakaret içerikli yorum yapmamak hangi değerdir?",
-a:["Saygı","İsraf","Gösteriş"],
-c:0
-}
-
-];
-
-let score=0;
-
-const quizArea=document.getElementById("quizArea");
-
-questions.forEach((item,index)=>{
-
-let box=document.createElement("div");
-
-box.className="quiz-box";
-
-box.innerHTML="<h4>"+(index+1)+". "+item.q+"</h4>";
-
-item.a.forEach((choice,i)=>{
-
-let btn=document.createElement("button");
-
-btn.innerText=choice;
-
-btn.onclick=function(){
-
-if(i===item.c){
-
-btn.style.background="#bbf7d0";
-
-score++;
-
-}
-else{
-
-btn.style.background="#fecaca";
-
-}
-
-document.getElementById("result").innerText=
-"Puan: "+score+" / "+questions.length;
-
-};
-
-box.appendChild(btn);
-
-});
-
-quizArea.appendChild(box);
-
-});
-
-</script>
-
+  <div class="loader" id="loader">
+    <div class="loader-spinner"></div>
+  </div>
+  <div class="bg-animation">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+  </div>
+  <nav class="navbar" id="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">
+        <i class="fas fa-book-open"></i>
+        Dijital Ahlak Sözlüğü
+      </a>
+      <ul class="nav-links">
+        <li><a href="#amac">Amaç</a></li>
+        <li><a href="#sozluk">Kavramlar</a></li>
+        <li><a href="#quiz">Quiz</a></li>
+        <li><a href="#sonuc">Sonuç</a></li>
+      </ul>
+      <button class="mobile-menu-btn" onclick="toggleMobileMenu()">
+        <i class="fas fa-bars"></i>
+      </button>
+    </div>
+  </nav>
+  <section class="hero">
+    <div class="hero-particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-badge">
+        <i class="fas fa-star"></i>
+        Geleceğin Değerleri
+      </div>
+      <h1>Dijital Ahlak <span>Sözlüğü</span></h1>
+      <p>Geleneksel ahlaki değerleri ayet, hadis/sünnet ve dijital dünya örnekleriyle öğrenelim. Dijital dünya ahlakla güzelleşir.</p>
+      <div class="hero-buttons">
+        <a href="#sozluk" class="btn btn-primary">
+          <i class="fas fa-book"></i>
+          Sözlüğü İncele
+        </a>
+        <a href="#quiz" class="btn btn-secondary">
+          <i class="fas fa-question-circle"></i>
+          Quiz Çöz
+        </a>
+      </div>
+      <div class="hero-stats">
+        <div class="stat-item">
+          <div class="stat-number counter" data-target="15">0</div>
+          <div class="stat-label">Kavram</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number counter" data-target="15">0</div>
+          <div class="stat-label">Quiz Sorusu</div>
+        </div>
+        <div class="stat-item">
+          <div class="stat-number counter" data-target="100">0</div>
+          <div class="stat-label">% Eğitim</div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="amac" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Projenin Amacı</span>
+        <h2 class="section-title">Neden Dijital Ahlak?</h2>
+        <p class="section-subtitle">Geleneksel değerleri dijital çağa taşıyarak daha bilinçli bir nesil yetiştirmek.</p>
+      </div>
+      <div class="purpose-grid">
+        <div class="purpose-content">
+          <h3>Dijital Dünyada Ahlaki Değerler</h3>
+          <p>Bu site; öğrencilerin temel ahlaki değerleri tanımasını, bu değerleri ayet ve hadis/sünnet örnekleriyle öğrenmesini ve dijital ortamda doğru davranışlara dönüştürmesini amaçlar.</p>
+          <div class="purpose-features">
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-quran"></i></div>
+              <div class="feature-text">
+                <h4>Kur'an-ı Kerim</h4>
+                <p>Ayetlerle desteklenmiş kavramlar</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-mosque"></i></div>
+              <div class="feature-text">
+                <h4>Hadis ve Sünnet</h4>
+                <p>Peygamberimizin uygulamaları</p>
+              </div>
+            </div>
+            <div class="feature-item">
+              <div class="feature-icon"><i class="fas fa-laptop"></i></div>
+              <div class="feature-text">
+                <h4>Dijital Uygulama</h4>
+                <p>Günlük dijital hayata entegrasyon</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="purpose-visual">
+          <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1200&auto=format&fit=crop" alt="Dijital Ahlak" class="main-img">
+          <div class="floating-card">
+            <i class="fas fa-shield-alt"></i>
+            <span>Güvenli İnternet</span>
+          </div>
+          <div class="floating-card">
+            <i class="fas fa-heart"></i>
+            <span>Empati ve Saygı</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section class="search-section">
+    <div class="search-container">
+      <div class="search-box">
+        <i class="fas fa-search"></i>
+        <input type="text" class="search-input" id="searchInput" placeholder="Kavram ara: mahremiyet, adalet, sabır, emanet..." onkeyup="searchConcept()">
+      </div>
+    </div>
+  </section>
+  <section id="sozluk" class="section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Kavramlar</span>
+        <h2 class="section-title">Ahlaki Değerler Sözlüğü</h2>
+        <p class="section-subtitle">Her kavramı tanımı, dini kaynağı ve dijital dünyadaki karşılığıyla inceleyin.</p>
+      </div>
+      <div class="concepts-grid" id="conceptsGrid"></div>
+    </div>
+  </section>
+
+  <section id="quiz" class="section quiz-section">
+    <div class="container">
+      <div class="section-header">
+        <span class="section-tag">Bilgi Testi</span>
+        <h2 class="section-title">Dijital Ahlak Quiz</h2>
+        <p class="section-subtitle">Öğrendiklerinizi test edin ve dijital ahlak bilginizi ölçün.</p>
+      </div>
+      <div class="quiz-container">
+        <div class="quiz-progress" id="quizProgress" style="display:none;">
+          <span id="progressText">Soru 1 / 15</span>
+          <div class="progress-bar">
+            <div class="progress-fill" id="progressFill"></div>
+          </div>
+          <span id="scoreText">Puan: 0</span>
+        </div>
+        <div id="quizArea"></div>
+        <div class="quiz-result" id="quizResult">
+          <div class="result-icon"><i class="fas fa-trophy"></i></div>
+          <div class="result-score" id="resultScore">0 / 15</div>
+          <p class="result-message" id="resultMessage"></p>
+          <div class="result-stars" id="resultStars"></div>
+          <button class="btn btn-primary" onclick="restartQuiz()">
+            <i class="fas fa-redo"></i>
+            Tekrar Dene
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+  <section id="sonuc" class="section result-section">
+    <div class="container">
+      <h2>Beklenen Sonuç</h2>
+      <p>Öğrencilerin dijital ortamda daha bilinçli, saygılı, güvenilir, merhametli ve sorumlu davranışlar geliştirmesi hedeflenmektedir.</p>
+      <div class="result-cards">
+        <div class="result-card">
+          <i class="fas fa-brain"></i>
+          <h4>Bilinçli Kullanım</h4>
+          <p>Dijital araçları bilinçli ve amaçlı kullanma</p>
+        </div>
+        <div class="result-card">
+          <i class="fas fa-handshake"></i>
+          <h4>Saygılı İletişim</h4>
+          <p>Karşılıklı saygı ve anlayış çerçevesinde iletişim</p>
+        </div>
+        <div class="result-card">
+          <i class="fas fa-lock"></i>
+          <h4>Güvenilirlik</h4>
+          <p>Kişisel verilerin korunması ve güvenilir kaynaklar</p>
+        </div>
+        <div class="result-card">
+          <i class="fas fa-hand-holding-heart"></i>
+          <h4>Merhamet ve Şefkat</h4>
+          <p>Dijital ortamda empati ve yardımlaşma</p>
+        </div>
+        <div class="result-card">
+          <i class="fas fa-balance-scale"></i>
+          <h4>Sorumluluk</h4>
+          <p>Davranışların sonuçlarını bilerek hareket etme</p>
+        </div>
+      </div>
+    </div>
+  </section>
+  <footer class="footer">
+    <div class="footer-content">
+      <div class="footer-brand">
+        <h3><i class="fas fa-book-open"></i> Dijital Ahlak Sözlüğü</h3>
+        <p>Geleneksel ahlaki değerleri dijital çağa taşıyan, ayet ve hadislerle desteklenmiş kapsamlı bir eğitim kaynağı.</p>
+      </div>
+      <div class="footer-links">
+        <h4>Hızlı Bağlantılar</h4>
+        <ul>
+          <li><a href="#amac"><i class="fas fa-chevron-right"></i> Projenin Amacı</a></li>
+          <li><a href="#sozluk"><i class="fas fa-chevron-right"></i> Kavramlar</a></li>
+          <li><a href="#quiz"><i class="fas fa-chevron-right"></i> Quiz</a></li>
+          <li><a href="#sonuc"><i class="fas fa-chevron-right"></i> Sonuç</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>Kavramlar</h4>
+        <ul>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Adalet</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Mahremiyet</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Empati</a></li>
+          <li><a href="#"><i class="fas fa-chevron-right"></i> Saygı</a></li>
+        </ul>
+      </div>
+      <div class="footer-links">
+        <h4>İletişim</h4>
+        <ul>
+          <li><a href="#"><i class="fas fa-envelope"></i> info@dijitalahlak.com</a></li>
+          <li><a href="#"><i class="fas fa-globe"></i> www.dijitalahlak.com</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p>Dijital Dünya Ahlakla Güzelleşir <i class="fas fa-heart"></i> 2024</p>
+    </div>
+  </footer>
+  <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+    <i class="fas fa-arrow-up"></i>
+  </button>
+  <script>
+    const concepts = [
+      { title: "Adalet", icon: "fa-balance-scale", image: "https://images.unsplash.com/photo-1589578527966-fdac0f44566c?q=80&w=1200&auto=format&fit=crop", definition: "Herkese hakkını vermek, doğru ve tarafsız davranmaktır.", verse: "Şüphesiz Allah adaleti emreder... (Nahl, 90)", hadith: "Peygamberimiz insanlar arasında ayrım yapmadan adaletli davranmıştır.", digital: "Sosyal medyada bir kişiyi haksız yere suçlamamak, yorumlarda tarafsız olmak." },
+      { title: "Mahremiyet", icon: "fa-user-shield", image: "https://images.unsplash.com/photo-1563986768494-4dee2763ff3f?q=80&w=1200&auto=format&fit=crop", definition: "Kişinin özel hayatına, kişisel bilgilerine ve sınırlarına saygı göstermektir.", verse: "Birbirinizin gizlisini araştırmayın... (Hucurat, 12)", hadith: "Peygamberimiz insanların özel hayatını araştırmayı doğru görmemiştir.", digital: "Başkasının fotoğrafını, mesajını veya bilgisini izinsiz paylaşmamak." },
+      { title: "Empati", icon: "fa-heart", image: "https://images.unsplash.com/photo-1522202176988-66273c2fd55f?q=80&w=1200&auto=format&fit=crop", definition: "Kendini başka bir insanın yerine koyarak onun duygularını anlamaya çalışmaktır.", verse: "Müminler ancak kardeştir. (Hucurat, 10)", hadith: "Kendisi için istediğini kardeşi için istemeyen gerçek mümin olamaz.", digital: "Yorum yazmadan önce karşı tarafın ne hissedebileceğini düşünmek." },
+      { title: "Saygı", icon: "fa-handshake", image: "https://images.unsplash.com/photo-1529156069898-49953e39b3ac?q=80&w=1200&auto=format&fit=crop", definition: "İnsanların haklarına, düşüncelerine ve farklılıklarına değer vermektir.", verse: "Bir topluluk diğerini küçümsemesin. (Hucurat, 11)", hadith: "Büyüklerine saygı göstermeyen bizden değildir.", digital: "Hakaret, alay ve küçük düşürücü ifadelerden uzak durmak." },
+      { title: "Dürüstlük", icon: "fa-check-circle", image: "https://images.unsplash.com/photo-1450101499163-c8848c66ca85?q=80&w=1200&auto=format&fit=crop", definition: "Her durumda doğru sözlü ve güvenilir olmaktır.", verse: "Doğru söz söyleyin. (Ahzab, 70)", hadith: "Doğruluk insanı iyiliğe götürür.", digital: "Sahte hesap kullanmamak, doğrulanmamış bilgileri paylaşmamak." },
+      { title: "Kul Hakkı", icon: "fa-gavel", image: "https://images.unsplash.com/photo-1521791136064-7986c2920216?q=80&w=1200&auto=format&fit=crop", definition: "Başkasının hakkına zarar vermemek ve emeğine saygı göstermektir.", verse: "Mallarınızı aranızda haksız yollarla yemeyin. (Bakara, 188)", hadith: "Müslüman, insanların elinden ve dilinden emin olduğu kişidir.", digital: "Telifli içerikleri, fotoğrafları veya yazıları izinsiz kullanmamak." },
+      { title: "Nezaket", icon: "fa-smile", image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop", definition: "İnsanlarla kibar, nazik ve saygılı bir dille iletişim kurmaktır.", verse: "İnsanlara güzel söz söyleyin. (Bakara, 83)", hadith: "Peygamberimiz konuşurken kırıcı olmamış, güzel sözlü olmuştur.", digital: "Mesajlarda ve yorumlarda kırıcı dil kullanmamak." },
+      { title: "Ölçülülük", icon: "fa-tachometer-alt", image: "https://images.unsplash.com/photo-1506784983877-45594efa4cbe?q=80&w=1200&auto=format&fit=crop", definition: "Her konuda dengeli davranmak ve aşırıya kaçmamaktır.", verse: "Yiyin, için fakat israf etmeyin. (Araf, 31)", hadith: "Peygamberimiz her konuda dengeli ve ölçülü davranmıştır.", digital: "Ekran süresini dengeli kullanmak ve teknoloji bağımlılığından uzak durmak." },
+      { title: "Merhamet", icon: "fa-hand-holding-heart", image: "https://images.unsplash.com/photo-1516589178581-6cd7833ae3b2?q=80&w=1200&auto=format&fit=crop", definition: "İnsanlara ve canlılara karşı şefkatli, anlayışlı ve yardımsever olmaktır.", verse: "Biz seni âlemlere rahmet olarak gönderdik. (Enbiya, 107)", hadith: "Merhamet etmeyene merhamet edilmez.", digital: "Zor durumda olan kişilerle alay etmemek, destekleyici dil kullanmak." },
+      { title: "Sorumluluk", icon: "fa-clipboard-check", image: "https://images.unsplash.com/photo-1523240795612-9a054b0db644?q=80&w=1200&auto=format&fit=crop", definition: "Üzerine düşen görevleri yerine getirmek ve davranışlarının sonucunu bilmektir.", verse: "Herkes kazandığına karşılık bir rehindir. (Müddessir, 38)", hadith: "Hepiniz çobansınız ve güttüklerinizden sorumlusunuz.", digital: "Paylaşım yapmadan önce etkisini, doğruluğunu ve sonuçlarını düşünmek." },
+      { title: "Sabır", icon: "fa-hourglass-half", image: "https://images.unsplash.com/photo-1494172961521-33799ddd43a5?q=80&w=1200&auto=format&fit=crop", definition: "Zorluklar karşısında sakin, dayanıklı ve kararlı davranmaktır.", verse: "Allah sabredenlerle beraberdir. (Bakara, 153)", hadith: "Peygamberimiz sıkıntılar karşısında sabırlı davranmıştır.", digital: "Oyunlarda, mesajlarda veya sosyal medyada öfkeyle hakaret etmemek." },
+      { title: "Hoşgörü", icon: "fa-users", image: "https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?q=80&w=1200&auto=format&fit=crop", definition: "Farklı düşünce ve davranışlara anlayışla yaklaşmaktır.", verse: "Dinde zorlama yoktur. (Bakara, 256)", hadith: "Peygamberimiz farklı insanlara karşı anlayışlı davranmıştır.", digital: "İnternette farklı görüşlere hakaret etmeden yaklaşmak." },
+      { title: "Yardımlaşma", icon: "fa-hands-helping", image: "https://images.unsplash.com/photo-1521737604893-d14cc237f11d?q=80&w=1200&auto=format&fit=crop", definition: "İnsanların birbirine destek olması ve iyiliği paylaşmasıdır.", verse: "İyilik ve takva üzerinde yardımlaşın. (Maide, 2)", hadith: "Mümin müminin kardeşidir.", digital: "Faydalı bilgi paylaşmak, ihtiyaç sahiplerine çevrim içi destek olmak." },
+      { title: "Güven", icon: "fa-shield-alt", image: "https://images.unsplash.com/photo-1520607162513-77705c0f0d4a?q=80&w=1200&auto=format&fit=crop", definition: "İnsanların birbirine inanması ve güven duymasıdır.", verse: "Emanetleri ehline verin. (Nisa, 58)", hadith: "Müslüman, insanların elinden ve dilinden emin olduğu kişidir.", digital: "Güvenilir internet sitelerini kullanmak, şifreleri ve kişisel bilgileri korumak." },
+      { title: "Emanet", icon: "fa-lock", image: "https://images.unsplash.com/photo-1516321497487-e288fb19713f?q=80&w=1200&auto=format&fit=crop", definition: "Korunması gereken bir şeyi güvenle muhafaza etmektir.", verse: "Allah size emanetleri ehline vermenizi emrediyor. (Nisa, 58)", hadith: "Peygamberimiz 'El-Emin' olarak bilinirdi.", digital: "Başkasının hesabını izinsiz kullanmamak, kişisel bilgileri korumak." }
+    ];
+
+    function renderConcepts() {
+      const grid = document.getElementById('conceptsGrid');
+      grid.innerHTML = concepts.map((concept, index) => `
+        <article class="concept-card" data-index="${index}">
+          <div class="card-image">
+            <img src="${concept.image}" alt="${concept.title}" loading="lazy">
+            <span class="card-badge">Kavram ${index + 1}</span>
+          </div>
+          <div class="card-body">
+            <h3 class="card-title"><i class="fas ${concept.icon}"></i> ${concept.title}</h3>
+            <div class="card-section">
+              <div class="card-label"><i class="fas fa-book"></i> Tanım</div>
+              <p class="card-text">${concept.definition}</p>
+            </div>
+            <div class="card-section">
+              <div class="card-label"><i class="fas fa-quran"></i> Ayet</div>
+              <div class="quote-box">
+                <p>${concept.verse}</p>
+              </div>
+            </div>
+            <div class="card-section">
+              <div class="card-label"><i class="fas fa-mosque"></i> Hadis / Sünnet</div>
+              <p class="card-text">${concept.hadith}</p>
+            </div>
+            <div class="card-section">
+              <div class="card-label"><i class="fas fa-laptop"></i> Dijital Karşılığı</div>
+              <span class="digital-tag"><i class="fas fa-wifi"></i> ${concept.digital}</span>
+            </div>
+          </div>
+        </article>
+      `).join('');
+    }
+
+    function searchConcept() {
+      const input = document.getElementById('searchInput').value.toLocaleLowerCase('tr-TR');
+      const cards = document.querySelectorAll('.concept-card');
+      cards.forEach(card => {
+        const text = card.innerText.toLocaleLowerCase('tr-TR');
+        if (text.includes(input)) {
+          card.style.display = 'block';
+          card.style.animation = 'fadeInUp 0.5s ease';
+        } else {
+          card.style.display = 'none';
+        }
+      });
+    }
+
+    const questions = [
+      {q: "Başkasının fotoğrafını izinsiz paylaşmamak hangi değerdir?", a: ["Mahremiyet", "Ölçülülük", "Vefa"], c: 0},
+      {q: "Doğruluğundan emin olmadığımız haberi paylaşmamak hangi değeri gösterir?", a: ["Dürüstlük", "Sabır", "Hoşgörü"], c: 0},
+      {q: "Yorum yazmadan önce karşı tarafın duygusunu düşünmek hangi kavramdır?", a: ["Empati", "Adalet", "Emanet"], c: 0},
+      {q: "İzinsiz içerik kopyalamamak hangi değerle ilgilidir?", a: ["Kul Hakkı", "Nezaket", "Merhamet"], c: 0},
+      {q: "Ekran süresini dengeli kullanmak hangi kavramdır?", a: ["Ölçülülük", "Adalet", "Mahremiyet"], c: 0},
+      {q: "Sosyal medyada hakaret etmemek hangi değeri gösterir?", a: ["Saygı", "Gösteriş", "İhmal"], c: 0},
+      {q: "Kırıcı mesaj yerine nazik bir ifade kullanmak hangi kavramdır?", a: ["Nezaket", "Kul Hakkı", "Öfke"], c: 0},
+      {q: "Zor durumda olan biriyle alay etmemek hangi değeri gösterir?", a: ["Merhamet", "Dürüstlük", "Rekabet"], c: 0},
+      {q: "Bir paylaşımın sonuçlarını düşünerek hareket etmek hangi kavramdır?", a: ["Sorumluluk", "Sabırsızlık", "Kıskançlık"], c: 0},
+      {q: "Bir kişiyi sosyal medyada haksız yere suçlamamak hangi değerdir?", a: ["Adalet", "İsraf", "Tembellik"], c: 0},
+      {q: "Öfkeliyken hakaret etmemek hangi değeri gösterir?", a: ["Sabır", "Kul Hakkı", "Gösteriş"], c: 0},
+      {q: "Farklı görüşlere hakaret etmeden yaklaşmak hangi kavramdır?", a: ["Hoşgörü", "Dürüstlük", "İhmal"], c: 0},
+      {q: "Faydalı bilgi paylaşmak ve destek olmak hangi değerle ilgilidir?", a: ["Yardımlaşma", "Sabırsızlık", "Kıskançlık"], c: 0},
+      {q: "Güvenilir internet sitelerini kullanmak ve şifreleri korumak hangi kavramla ilişkilidir?", a: ["Güven", "Rekabet", "Gösteriş"], c: 0},
+      {q: "Başkasının hesabını izinsiz kullanmamak hangi değerdir?", a: ["Emanet", "Öfke", "Tembellik"], c: 0}
+    ];
+
+    let currentQuestion = 0;
+    let score = 0;
+    let answered = 0;
+
+    function initQuiz() {
+      const quizArea = document.getElementById('quizArea');
+      const quizProgress = document.getElementById('quizProgress');
+      const quizResult = document.getElementById('quizResult');
+      quizArea.innerHTML = '';
+      quizProgress.style.display = 'flex';
+      quizResult.classList.remove('show');
+      currentQuestion = 0;
+      score = 0;
+      answered = 0;
+      updateProgress();
+      showQuestion(0);
+    }
+
+    function showQuestion(index) {
+      const quizArea = document.getElementById('quizArea');
+      const item = questions[index];
+      const card = document.createElement('div');
+      card.className = 'quiz-card';
+      card.innerHTML = `
+        <div class="quiz-number">${index + 1}</div>
+        <p class="quiz-question">${item.q}</p>
+        <div class="quiz-options">
+          ${item.a.map((choice, i) => `
+            <div class="quiz-option" onclick="selectOption(this, ${i}, ${item.c}, ${index})">
+              <span class="option-letter">${String.fromCharCode(65 + i)}</span>
+              <span>${choice}</span>
+            </div>
+          `).join('')}
+        </div>
+      `;
+      quizArea.appendChild(card);
+      setTimeout(() => card.classList.add('active'), 50);
+    }
+
+    function selectOption(element, selected, correct, qIndex) {
+      const card = element.closest('.quiz-card');
+      if (card.dataset.answered === 'true') return;
+      card.dataset.answered = 'true';
+      answered++;
+      const options = card.querySelectorAll('.quiz-option');
+      options.forEach((opt, i) => {
+        opt.classList.add('disabled');
+        if (i === correct) {
+          opt.classList.add('correct');
+        } else if (i === selected && i !== correct) {
+          opt.classList.add('wrong');
+        }
+      });
+      if (selected === correct) score++;
+      updateProgress();
+      setTimeout(() => {
+        if (qIndex < questions.length - 1) {
+          card.style.opacity = '0';
+          card.style.transform = 'translateX(-50px)';
+          setTimeout(() => {
+            card.remove();
+            showQuestion(qIndex + 1);
+          }, 400);
+        } else {
+          showResult();
+        }
+      }, 1200);
+    }
+
+    function updateProgress() {
+      document.getElementById('progressText').textContent = `Soru ${Math.min(answered + 1, questions.length)} / ${questions.length}`;
+      document.getElementById('scoreText').textContent = `Puan: ${score}`;
+      document.getElementById('progressFill').style.width = `${(answered / questions.length) * 100}%`;
+    }
+
+    function showResult() {
+      document.getElementById('quizArea').innerHTML = '';
+      document.getElementById('quizProgress').style.display = 'none';
+      const result = document.getElementById('quizResult');
+      result.classList.add('show');
+      document.getElementById('resultScore').textContent = `${score} / ${questions.length}`;
+      const percentage = (score / questions.length) * 100;
+      let message = '';
+      if (percentage >= 90) message = 'Mükemmel! Dijital ahlak konusunda uzman seviyesindesiniz!';
+      else if (percentage >= 70) message = 'Çok iyi! Dijital ahlak bilginiz oldukça gelişmiş.';
+      else if (percentage >= 50) message = 'İyi gidiyorsunuz! Biraz daha pratik yapabilirsiniz.';
+      else message = 'Daha fazla çalışmanız gerekiyor. Kavramları tekrar inceleyin!';
+      document.getElementById('resultMessage').textContent = message;
+      const starsContainer = document.getElementById('resultStars');
+      starsContainer.innerHTML = '';
+      const starCount = Math.ceil((score / questions.length) * 5);
+      for (let i = 0; i < 5; i++) {
+        const star = document.createElement('i');
+        star.className = 'fas fa-star' + (i < starCount ? ' filled' : '');
+        if (i < starCount) {
+          star.style.animationDelay = `${i * 0.1}s`;
+        }
+        starsContainer.appendChild(star);
+      }
+    }
+
+    function restartQuiz() {
+      initQuiz();
+    }
+
+    function scrollToTop() {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function toggleMobileMenu() {
+      const navLinks = document.querySelector('.nav-links');
+      navLinks.style.display = navLinks.style.display === 'flex' ? 'none' : 'flex';
+      navLinks.style.position = 'absolute';
+      navLinks.style.top = '72px';
+      navLinks.style.left = '0';
+      navLinks.style.right = '0';
+      navLinks.style.background = 'rgba(255,255,255,0.95)';
+      navLinks.style.backdropFilter = 'blur(20px)';
+      navLinks.style.flexDirection = 'column';
+      navLinks.style.padding = '20px';
+      navLinks.style.boxShadow = '0 10px 30px rgba(0,0,0,0.1)';
+    }
+
+    // Counter Animation
+    function animateCounters() {
+      const counters = document.querySelectorAll('.counter');
+      counters.forEach(counter => {
+        const target = parseInt(counter.getAttribute('data-target'));
+        const duration = 2000;
+        const step = target / (duration / 16);
+        let current = 0;
+        const updateCounter = () => {
+          current += step;
+          if (current < target) {
+            counter.textContent = Math.floor(current);
+            requestAnimationFrame(updateCounter);
+          } else {
+            counter.textContent = target;
+          }
+        };
+        updateCounter();
+      });
+    }
+
+    // Scroll Reveal
+    function revealOnScroll() {
+      const cards = document.querySelectorAll('.concept-card');
+      cards.forEach((card, index) => {
+        const rect = card.getBoundingClientRect();
+        if (rect.top < window.innerHeight - 100) {
+          setTimeout(() => card.classList.add('visible'), index * 100);
+        }
+      });
+    }
+
+    // Navbar scroll effect
+    function handleNavbar() {
+      const navbar = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    }
+
+    // Back to top button
+    function handleBackToTop() {
+      const btn = document.getElementById('backToTop');
+      if (window.scrollY > 500) {
+        btn.classList.add('visible');
+      } else {
+        btn.classList.remove('visible');
+      }
+    }
+
+    // Create particles
+    function createParticles() {
+      const container = document.getElementById('particles');
+      for (let i = 0; i < 30; i++) {
+        const particle = document.createElement('div');
+        particle.className = 'particle';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 15 + 's';
+        particle.style.animationDuration = (10 + Math.random() * 10) + 's';
+        container.appendChild(particle);
+      }
+    }
+
+    // Initialize
+    window.addEventListener('load', () => {
+      document.getElementById('loader').classList.add('hidden');
+      renderConcepts();
+      createParticles();
+      animateCounters();
+      initQuiz();
+      revealOnScroll();
+    });
+
+    window.addEventListener('scroll', () => {
+      handleNavbar();
+      handleBackToTop();
+      revealOnScroll();
+    });
+  </script>
 </body>
 </html>
