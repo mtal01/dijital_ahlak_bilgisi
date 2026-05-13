@@ -1217,22 +1217,22 @@
       });
     }
 
-    const questions = [
-      {q: "Başkasının fotoğrafını izinsiz paylaşmamak hangi değerdir?", a: ["Mahremiyet", "Ölçülülük", "Vefa"], c: 0},
+      const questions = [
+      {q: "Başkasının fotoğrafını izinsiz paylaşmamak hangi değerdir?", a: ["Ölçülülük", "Vefa", "Mahremiyet"], c: 2},
       {q: "Doğruluğundan emin olmadığımız haberi paylaşmamak hangi değeri gösterir?", a: ["Dürüstlük", "Sabır", "Hoşgörü"], c: 0},
-      {q: "Yorum yazmadan önce karşı tarafın duygusunu düşünmek hangi kavramdır?", a: ["Empati", "Adalet", "Emanet"], c: 0},
-      {q: "İzinsiz içerik kopyalamamak hangi değerle ilgilidir?", a: ["Kul Hakkı", "Nezaket", "Merhamet"], c: 0},
+      {q: "Yorum yazmadan önce karşı tarafın duygusunu düşünmek hangi kavramdır?", a: ["Emanet", "Adalet", "Empati"], c: 2},
+      {q: "İzinsiz içerik kopyalamamak hangi değerle ilgilidir?", a: ["Merhamet", "Nezaket", "Kul Hakkı"], c: 2},
       {q: "Ekran süresini dengeli kullanmak hangi kavramdır?", a: ["Ölçülülük", "Adalet", "Mahremiyet"], c: 0},
       {q: "Sosyal medyada hakaret etmemek hangi değeri gösterir?", a: ["Saygı", "Gösteriş", "İhmal"], c: 0},
-      {q: "Kırıcı mesaj yerine nazik bir ifade kullanmak hangi kavramdır?", a: ["Nezaket", "Kul Hakkı", "Öfke"], c: 0},
-      {q: "Zor durumda olan biriyle alay etmemek hangi değeri gösterir?", a: ["Merhamet", "Dürüstlük", "Rekabet"], c: 0},
-      {q: "Bir paylaşımın sonuçlarını düşünerek hareket etmek hangi kavramdır?", a: ["Sorumluluk", "Sabırsızlık", "Kıskançlık"], c: 0},
-      {q: "Bir kişiyi sosyal medyada haksız yere suçlamamak hangi değerdir?", a: ["Adalet", "İsraf", "Tembellik"], c: 0},
+      {q: "Kırıcı mesaj yerine nazik bir ifade kullanmak hangi kavramdır?", a: ["Nezaket", "Öfke", "Kul Hakkı"], c: 0},
+      {q: "Zor durumda olan biriyle alay etmemek hangi değeri gösterir?", a: ["Rekabet", "Merhamet", "Dürüstlük"], c: 1},
+      {q: "Bir paylaşımın sonuçlarını düşünerek hareket etmek hangi kavramdır?", a: ["Sabırsızlık", "Sorumluluk", "Kıskançlık"], c: 1},
+      {q: "Bir kişiyi sosyal medyada haksız yere suçlamamak hangi değerdir?", a: ["İsraf", "Adalet", "Tembellik"], c: 1},
       {q: "Öfkeliyken hakaret etmemek hangi değeri gösterir?", a: ["Sabır", "Kul Hakkı", "Gösteriş"], c: 0},
-      {q: "Farklı görüşlere hakaret etmeden yaklaşmak hangi kavramdır?", a: ["Hoşgörü", "Dürüstlük", "İhmal"], c: 0},
-      {q: "Faydalı bilgi paylaşmak ve destek olmak hangi değerle ilgilidir?", a: ["Yardımlaşma", "Sabırsızlık", "Kıskançlık"], c: 0},
-      {q: "Güvenilir internet sitelerini kullanmak ve şifreleri korumak hangi kavramla ilişkilidir?", a: ["Güven", "Rekabet", "Gösteriş"], c: 0},
-      {q: "Başkasının hesabını izinsiz kullanmamak hangi değerdir?", a: ["Emanet", "Öfke", "Tembellik"], c: 0}
+      {q: "Farklı görüşlere hakaret etmeden yaklaşmak hangi kavramdır?", a: ["Dürüstlük", "İhmal", "Hoşgörü"], c: 2},
+      {q: "Faydalı bilgi paylaşmak ve destek olmak hangi değerle ilgilidir?", a: ["Yardımlaşma", "Kıskançlık", "Sabırsızlık"], c: 0},
+      {q: "Güvenilir internet sitelerini kullanmak ve şifreleri korumak hangi kavramla ilişkilidir?", a: ["Rekabet", "Güven", "Gösteriş"], c: 1},
+      {q: "Başkasının hesabını izinsiz kullanmamak hangi değerdir?", a: ["Öfke", "Emanet", "Tembellik"], c: 1}
     ];
 
     let currentQuestion = 0;
